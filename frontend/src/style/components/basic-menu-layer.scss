@@ -1,0 +1,19 @@
+.ninja.basic-layer {
+  background-color: $dark;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem 0 0 0;
+  flex-direction: column;
+  min-height: 100vh;
+
+  & main {
+    flex: 1;
+  }
+
+  & footer {
+    flex-shrink: 0;
+    background-color: aliceblue;
+    width: 100%;
+  }
+}
