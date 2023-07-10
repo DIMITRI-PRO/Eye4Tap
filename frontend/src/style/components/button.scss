@@ -23,8 +23,7 @@
   background: $secondary;
   padding: 0.5em 1em;
   color: $text-btn-basic;
-  height: -moz-fit-content;
-  height: fit-content;
+  height: auto;
   border: none;
 
   & img {
