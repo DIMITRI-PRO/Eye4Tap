@@ -1,0 +1,53 @@
+.modal-default-background {
+  z-index: 50;
+  position: fixed;
+  top: 3rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #00000058;
+  display: flex;
+  justify-content: center;
+  animation: appear 0.4s ease-in-out;
+  align-items: center;
+}
+
+.modal-default {
+  &.container {
+    height: auto;
+    display: block;
+    justify-content: center;
+    background-color: white;
+    border-radius: 0.8rem;
+    box-shadow: 0px 0px 28px -3px #000000;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  & > hr {
+    height: 1px;
+    margin: 0;
+    background-color: $separator-color;
+    border: 0px;
+  }
+
+  &.header {
+    display: flex;
+    justify-content: flex-end;
+
+    &.btn {
+      padding: 0.5rem 0.5rem;
+    }
+  }
+  &.body {
+    padding: 1rem 2rem;
+  }
+  &.footer {
+    padding: 1rem 2rem;
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+  }
+}
