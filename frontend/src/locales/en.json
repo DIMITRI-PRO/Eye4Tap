@@ -5,7 +5,7 @@
   },
   "menu": {
     "title": "Menu",
-     "navigation": {
+    "navigation": {
       "login": "Login",
       "register": "Register",
       "profile": "Profile"
