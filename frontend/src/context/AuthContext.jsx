@@ -99,14 +99,15 @@ export const AuthContextProvider = ({ children }) => {
   }, [user, isLogin, id]);
 
   useEffect(() => {
-    if (cookie && isLogin && !user && !id) {
+    if (cookie && isLogin && (!user || !id)) {
       const { sub } = jwtDecode(cookie);
       getUser(sub);
       setId(sub);
     }
-  }, [user, cookie, isLogin, refreshUser]);
+  }, [user, cookie, isLogin, refreshUser, id]);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     setCookie(getCookie(COOKIE));
     if (cookie) setIsLogin(true);
     else setIsLogin(false);
