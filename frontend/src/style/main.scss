@@ -1,5 +1,8 @@
-// Importer les variables de thème
+// Importer les variables de theme
 @import "themes/basicTheme";
+
+//Importer keyFrames
+@import "animations/movements";
 
 html,
 body {
@@ -32,4 +35,10 @@ body {
 // Importer les styles de chaque composant
 @import "components/container";
 @import "components/basic-menu";
+@import "components/basic-menu-layer";
 @import "components/button";
+@import "components/modal";
+@import "components/scrollbar.scss";
+
+// Importer les animations
+@import "animations/glitch";

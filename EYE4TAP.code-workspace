@@ -6,7 +6,7 @@
 	],
 	"settings": {
 		"jest.disabledWorkspaceFolders": [
-			"Eye-4-Tap-v2",
+			"Eye4Tap",
 		]
 	}
 }

@@ -1,6 +1,15 @@
 {
+  "name-app": {
+    "title": "EYE 4 TAP",
+    "sub-title": "joue et détruit ton clavier"
+  },
   "menu": {
-    "title": "menu"
+    "title": "Menu",
+    "navigation": {
+      "login": "Se connecter",
+      "register": "S'incrire",
+      "profile": "Profile"
+    }
   },
   "login": {
     "label": {
@@ -12,14 +21,43 @@
     "label": {
       "email": "Email :",
       "password": "Mot de passe :",
-      "lastname": "Nom :",
+      "lastname": "Nom de famille :",
       "firstname": "Prénom :",
-      "pseudo": "Pseudo :"
+      "pseudo": "Nom d'utilisateur :"
     }
+  },
+  "profile": {
+    "title": "Votre profile"
   },
   "buttons": {
     "login-submit": "Se connecter",
-    "register-submit": "S'enregistrer",
-    "deconnexion": "Déconnexion"
+    "register-submit": "S'inscrire",
+    "deconnexion": "Se déconnecter",
+    "save": "Sauvegarder"
+  },
+  "pages": {
+    "home": {
+      "modal": {
+        "title": "AVERTISSEMENTS : À LIRE AVANT DE JOUER",
+        "content": {
+          "section-1": {
+            "title": "Photosensibilité / crises d'épilepsie :",
+            "content": "Un très faible pourcentage de personnes peut éprouver des crises d'épilepsie lorsqu'elles sont exposées à certains motifs lumineux ou à des lumières clignotantes. L'exposition à certains motifs ou arrière-plans sur un écran d'ordinateur, ou lors de la lecture de jeux vidéo, peut déclencher une crise d'épilepsie chez ces personnes. Certaines conditions peuvent déclencher des symptômes épileptiques non détectés auparavant, même chez des personnes n'ayant aucun antécédent de crises ou d'épilepsie. Si vous, ou quelqu'un de votre famille, avez une condition épileptique, consultez votre médecin avant de jouer. Si vous ressentez l'un des symptômes suivants pendant la lecture d'une vidéo ou d'un jeu informatique - vertiges, vision altérée, tics oculaires ou musculaires, perte de conscience, désorientation, tout mouvement involontaire ou convulsions - ARRÊTEZ IMMÉDIATEMENT l'utilisation et consultez votre médecin avant de reprendre le jeu."
+          },
+          "section-2": {
+            "title": "Conseils d'utilisation des jeux vidéo pour réduire les crises d'épilepsie et autres problèmes de santé :",
+            "list": {
+              "text-1": "Consultez votre médecin avant de jouer si vous avez des problèmes de santé graves, si vous êtes enceinte, âgé ou si vous avez un dispositif médical implanté",
+              "text-2": "Évitez de jouer lorsque vous êtes malade, fatigué et/ou sous l'influence de médicaments ou de drogues",
+              "text-3": "Gardez vos yeux le plus loin possible de l'écran",
+              "text-4": "N'utilisez pas d'écouteurs à volume élevé, car cela peut causer une perte auditive",
+              "text-5": "Jouez dans une posture confortable pour éviter les engourdissements, les raideurs ou tout autre inconfort",
+              "text-6": "Faites des pauses régulières pendant les sessions de jeu. La durée et la fréquence des pauses nécessaires peuvent varier d'une personne à l'autre",
+              "text-7": "Arrêtez de jouer si vous ressentez un quelconque inconfort"
+            }
+          }
+        }
+      }
+    }
   }
 }

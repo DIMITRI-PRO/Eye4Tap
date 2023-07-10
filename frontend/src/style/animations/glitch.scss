@@ -1,0 +1,71 @@
+.wrapper {
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
+
+@mixin glitchCopy {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch {
+  position: relative;
+  color: $glitch-text;
+  font-size: 4rem;
+  letter-spacing: 0.5rem;
+  animation: glitch-skew 1s infinite linear alternate-reverse;
+
+  &.sub {
+    font-size: 2rem;
+    letter-spacing: 0.2rem;
+  }
+
+  &::before {
+    @include glitchCopy;
+    left: 2px;
+    text-shadow: -2px 0 $glitch-text-shadow;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+  }
+
+  &::after {
+    @include glitchCopy;
+    left: -2px;
+    text-shadow: -2px 0 $glitch-text-copy, 2px 2px $glitch-text-shadow;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+  }
+}
+
+@keyframes glitch-anim {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i * calc(1/$steps))} {
+      clip: rect(random(100) + px, 9999px, random(100) + px, 0);
+      transform: skew(calc(random(100) / 100) + deg);
+    }
+  }
+}
+
+@keyframes glitch-anim2 {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i * calc(1/$steps))} {
+      clip: rect(random(100) + px, 9999px, random(100) + px, 0);
+      transform: skew(calc(random(100) / 100) + deg);
+    }
+  }
+}
+
+@keyframes glitch-skew {
+  $steps: 10;
+  @for $i from 0 through $steps {
+    #{percentage($i * calc(1/$steps))} {
+      transform: skew(calc(random(10) - 5) + deg);
+    }
+  }
+}

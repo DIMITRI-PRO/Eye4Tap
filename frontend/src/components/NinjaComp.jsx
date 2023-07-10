@@ -5,16 +5,20 @@ import { BasicMenu } from "./Menus/BasicMenu";
 import { NotificationMessage } from "./Layers/NotificationMessage";
 import { BasicMenuLayer } from "./Layers/BasicMenuLayer";
 import { ProgressBar } from "./Progress/ProgressBar";
+import { Modal } from "./Modals/Modal";
+import { FooterBar } from "./Footer/Footer";
 
 const { Form, FormItem } = Forms;
 
 export {
-  Form,
-  FormItem,
   Button,
   BasicMenu,
   BasicMenuLayer,
+  FooterBar,
+  Form,
+  FormItem,
   LanguageSwitch,
-  ProgressBar,
+  Modal,
   NotificationMessage,
+  ProgressBar,
 };
