@@ -9,6 +9,7 @@ import {
   Button,
   BasicMenuLayer,
   NotificationMessage,
+  FooterBar,
 } from "../components/NinjaComp";
 import { publicRoutes } from "../constant/publicRoutes";
 import { privateRoutes } from "../constant/privateRoutes";
@@ -71,7 +72,7 @@ export const AuthRouter = () => {
         content={content}
         setErrors={setErrors}
       />
-      <BasicMenuLayer>
+      <BasicMenuLayer footer={FooterBar}>
         <AllRoutes routes={allRoutes} />
       </BasicMenuLayer>
     </>
