@@ -26,26 +26,31 @@ export const Register = () => {
         label={t("register.label.lastname")}
         type="text"
         dataName="lastname"
+        required
       />
       <FormItem
         label={t("register.label.firstname")}
         type="text"
         dataName="firstname"
+        required
       />
       <FormItem
         label={t("register.label.pseudo")}
         type="text"
         dataName="pseudo"
+        required
       />
       <FormItem
         label={t("register.label.email")}
         type="email"
         dataName="email"
+        required
       />
       <FormItem
         label={t("register.label.password")}
         type="password"
         dataName="password"
+        required
       />
       <Button type="submit">{t("buttons.register-submit")}</Button>
     </Form>
