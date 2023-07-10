@@ -5,6 +5,7 @@ $tertiary: #52616e;
 $primary-border: #ebf5fd;
 $secondary-border: #63696e;
 $tertiary-border: #63696e;
+$dark: #282b2c;
 
 //buttons
 $btn-basic: #cfd6dc;
@@ -16,6 +17,9 @@ $btn-basic-border-hover: #2e3031;
 $text-btn-basic: #171718;
 $text-btn-basic-hover: #c9d3da;
 
+//separator-color
+$separator-color: #63696e;
+
 //icon-color
 $icon-home: #171718;
 $icon-home-hover: #8a8a8f;
@@ -24,3 +28,8 @@ $icon-home-hover: #8a8a8f;
 $mobile: 480px;
 $tablet: 768px;
 $desktop: 1024px;
+
+//glitchs
+$glitch-text: #fff;
+$glitch-text-shadow: #ff00c1;
+$glitch-text-copy: #00fff9;
