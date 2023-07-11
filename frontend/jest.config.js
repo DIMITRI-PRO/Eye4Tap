@@ -3,6 +3,7 @@ module.exports = {
   transform: {
     "^.+\\.js$": "babel-jest",
     "^.+\\.jsx?$": "babel-jest",
+    "^.+\\.svg$": "jest-transform-stub",
   },
   testMatch: ["**/__tests__/**/*.test.(js|jsx|ts|tsx)"],
   moduleNameMapper: {
