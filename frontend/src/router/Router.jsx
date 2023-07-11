@@ -55,7 +55,11 @@ export const AuthRouter = () => {
   };
 
   const renderExtraButtons = (isLog) =>
-    isLog ? <Button onClick={logOut}>{t("buttons.deconnexion")}</Button> : null;
+    isLog ? (
+      <Button name="borderless danger" onClick={logOut}>
+        {t("buttons.deconnexion")}
+      </Button>
+    ) : null;
 
   return (
     <>

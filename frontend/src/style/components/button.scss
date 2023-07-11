@@ -37,9 +37,44 @@
     cursor: pointer;
     color: $text-btn-basic-hover;
   }
-
+  
   &:active {
     color: $text-btn-basic-hover;
     transition: none;
+  }
+}
+
+.btn-circle {
+  background-color: transparent;
+  padding: 0.2rem;
+  border: none;
+  border-radius: 50%;
+  height: auto;
+  
+  &:hover {
+    transition: ease-in-out 0.2s;
+    background-color: $btn-circle-hover;
+  }
+}
+
+.btn-borderless {
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.3rem;
+  height: auto;
+  
+  &:hover {
+    color: $btn-borderless-hover;
+    transition: ease-in-out 0.2s;
+    background-color: $btn-circle-hover;
+  }
+
+  &.danger {
+    background-color: $btn-danger;
+    color: $text-general-hover;
+    &:hover {
+      background-color: $btn-danger-hover;
+    }
   }
 }
