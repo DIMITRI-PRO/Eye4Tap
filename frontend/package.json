@@ -23,6 +23,9 @@
     "template-fullstack": "file:.."
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.22.7",
+    "@babel/preset-react": "^7.22.5",
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@vitejs/plugin-react": "^1.0.7",
     "eslint": "^8.11.0",
@@ -38,7 +41,9 @@
     "husky": "^7.0.0",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
+    "jest-transform-stub": "^2.0.0",
     "prettier": "^2.5.1",
+    "react-test-renderer": "^18.2.0",
     "sass": "^1.62.1",
     "vite": "^2.8.0",
     "vite-plugin-sass": "^0.1.0"
