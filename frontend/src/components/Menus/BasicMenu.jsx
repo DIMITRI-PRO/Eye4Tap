@@ -151,7 +151,7 @@ export const BasicMenu = ({
         <div className={`ninja nav-${typeMenu || "basic-mobile"}`}>
           <Button
             id="menu-item-list-btn"
-            name="menu"
+            name="circle"
             onClick={() => {
               setDisplayMobileMenu(!displayMobileMenu);
             }}
@@ -160,27 +160,27 @@ export const BasicMenu = ({
           {displayMobileMenu && (
             <ul id="menu-item-list" className="ninja nav-ul-mobile">
               <li className="ninja nav-header-mobile">
-                {userData && (
-                  <img
-                    src={userData?.picture || User}
-                    style={{
-                      border: "solid 1px black",
-                      borderRadius: "50%",
-                      padding: "0.2rem",
+                <div>
+                  <h2>{t("menu.title")}</h2>
+                  <Button
+                    name="circle"
+                    icon={X}
+                    onClick={() => {
+                      setDisplayMobileMenu(false);
                     }}
-                    height={80}
-                    width={80}
-                    alt="profile"
                   />
+                </div>
+                {userData && (
+                  <>
+                    <img
+                      src={userData?.picture || User}
+                      height={80}
+                      width={80}
+                      alt="profile"
+                    />
+                    <p>{userData?.pseudo}</p>
+                  </>
                 )}
-                <h2>{t("menu.title")}</h2>
-                <Button
-                  name="menu"
-                  icon={X}
-                  onClick={() => {
-                    setDisplayMobileMenu(false);
-                  }}
-                />
               </li>
               <hr />
               {headers.map(({ key, path, render, name, ignore }) => {
@@ -225,6 +225,7 @@ BasicMenu.propTypes = {
   homeExtra: PropTypes.element,
   userData: PropTypes.shape({
     picture: PropTypes.string,
+    pseudo: PropTypes.string,
   }),
 };
 
