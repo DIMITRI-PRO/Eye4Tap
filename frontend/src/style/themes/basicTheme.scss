@@ -8,14 +8,34 @@ $tertiary-border: #63696e;
 $dark: #282b2c;
 
 //buttons
+// basics
 $btn-basic: #cfd6dc;
 $btn-basic-hover: #797d81;
 $btn-basic-border: #686b6d;
 $btn-basic-border-hover: #2e3031;
+// danger
+$btn-danger: #de3518;;
+$btn-danger-hover: #a32e19;;
+$btn-danger-border: #686b6d;
+$btn-danger-border-hover: #2e3031;
+// links
+$btn-link: #cfd6dc;
+$btn-link-hover: #797d81;
+$btn-link-border: #686b6d;
+$btn-link-border-hover: #2e3031;
+// borderless
+$btn-borderless: #cfd6dc;
+$btn-borderless-hover: #797d81;
+// circles
+$btn-circle-hover: #626364;
 
 //text-color
+$text-general: #232121;
+$text-general-hover: #e8e8e8;
 $text-btn-basic: #171718;
 $text-btn-basic-hover: #c9d3da;
+$text-link-visited: #0F41AF;
+$text-danger: #de3518;
 
 //separator-color
 $separator-color: #63696e;
