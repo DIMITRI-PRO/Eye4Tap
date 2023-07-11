@@ -1,0 +1,20 @@
+.btn-language-general {
+    padding: 0.5rem;
+    display: flex;
+    color: $text-general;
+    
+    & > button.btn-language {
+        margin-right: 0.5rem;
+        background-color: $btn-link;
+        min-width: 3.5rem;
+        border-radius: 0.3rem;
+        border: none;
+        padding: 0.5rem 1rem;
+        transition: ease-in-out 0.1s;
+        
+        &:hover {
+            background-color: $btn-link-hover;
+            color: $text-general-hover;
+        }
+    }
+}
