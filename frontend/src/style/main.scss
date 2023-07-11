@@ -38,7 +38,8 @@ body {
 @import "components/basic-menu-layer";
 @import "components/button";
 @import "components/modal";
-@import "components/scrollbar.scss";
+@import "components/scrollbar";
+@import "components/language-switch";
 
 // Importer les animations
 @import "animations/glitch";
