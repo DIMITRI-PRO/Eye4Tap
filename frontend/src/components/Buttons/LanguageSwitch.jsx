@@ -10,13 +10,21 @@ export const LanguageSwitch = () => {
   };
 
   return (
-    <>
-      <Button name="language" onClick={() => handleChangeLanguage("en")}>
+    <div className="ninja btn-language-general">
+      <Button
+        name="language"
+        type="link"
+        onClick={() => handleChangeLanguage("en")}
+      >
         Eng
       </Button>
-      <Button name="language" onClick={() => handleChangeLanguage("fr")}>
+      <Button
+        name="language"
+        type="link"
+        onClick={() => handleChangeLanguage("fr")}
+      >
         Fr
       </Button>
-    </>
+    </div>
   );
 };
