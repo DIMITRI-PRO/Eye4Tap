@@ -13,9 +13,14 @@ $btn-basic: #cfd6dc;
 $btn-basic-hover: #797d81;
 $btn-basic-border: #686b6d;
 $btn-basic-border-hover: #2e3031;
+// submit
+$btn-submit: #cfd6dc;
+$btn-submit-hover: #797d81;
+$btn-submit-border: #686b6d;
+$btn-submit-border-hover: #2e3031;
 // danger
-$btn-danger: #de3518;;
-$btn-danger-hover: #a32e19;;
+$btn-danger: #de3518;
+$btn-danger-hover: #a32e19;
 $btn-danger-border: #686b6d;
 $btn-danger-border-hover: #2e3031;
 // links
@@ -34,7 +39,9 @@ $text-general: #232121;
 $text-general-hover: #e8e8e8;
 $text-btn-basic: #171718;
 $text-btn-basic-hover: #c9d3da;
-$text-link-visited: #0F41AF;
+$text-btn-submit: #171718;
+$text-btn-submit-hover: #c9d3da;
+$text-link-visited: #0f41af;
 $text-danger: #de3518;
 
 //separator-color
@@ -43,6 +50,16 @@ $separator-color: #63696e;
 //icon-color
 $icon-home: #171718;
 $icon-home-hover: #8a8a8f;
+
+//forms
+$form-background: #77c8a1;
+$form-label: #ff00c1;
+$form-label: #ff00c1;
+$form-label-hover: #830363;
+$form-input: #ffffff;
+$form-input-hover: #090948;
+$form-border: #20cbac;
+$form-border-hover: #115850;
 
 //responsive
 $mobile: 480px;
