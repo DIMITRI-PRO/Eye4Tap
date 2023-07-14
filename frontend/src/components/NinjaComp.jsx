@@ -7,6 +7,7 @@ import { BasicMenuLayer } from "./Layers/BasicMenuLayer";
 import { ProgressBar } from "./Progress/ProgressBar";
 import { Modal } from "./Modals/Modal";
 import { FooterBar } from "./Footer/Footer";
+import { SectionContent } from "./Layers/SectionContent";
 
 const { Form, FormItem } = Forms;
 
@@ -21,4 +22,5 @@ export {
   Modal,
   NotificationMessage,
   ProgressBar,
+  SectionContent,
 };

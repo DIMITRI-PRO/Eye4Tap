@@ -3,17 +3,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
   padding: 5rem 0 0 0;
   flex-direction: column;
-  min-height: 100vh;
 
   & main {
     flex: 1;
+    width: 100%;
   }
 
   & footer {
     flex-shrink: 0;
-    background-color: aliceblue;
     width: 100%;
   }
 }

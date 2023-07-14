@@ -25,11 +25,9 @@ export const NotificationMessage = ({
     display && (
       <div style={divStyle} className="ninja notif-message">
         <div className="ninja notif-close">
-          <Button
-            name="close-notif"
-            icon={X}
-            onClick={() => setDisplay(false)}
-          />
+          <Button name="close-notif" onClick={() => setDisplay(false)}>
+            <X />
+          </Button>
         </div>
         {content && <div className="ninja notif-content">{content}</div>}
         <ProgressBar

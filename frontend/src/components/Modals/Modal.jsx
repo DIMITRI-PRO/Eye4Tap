@@ -37,7 +37,9 @@ export const Modal = ({
         <div className="ninja modal-default header">
           {header}
           <div className={`ninja modal-${customName || "default"} header btn`}>
-            <Button type="close" icon={X} onClick={() => setIsDisplay(false)} />
+            <Button type="circle" onClick={() => setIsDisplay(false)}>
+              <X fontSize="1.5rem" />
+            </Button>
           </div>
         </div>
         {!borderless && (

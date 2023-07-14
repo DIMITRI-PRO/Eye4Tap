@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import Customs from "../../../components/Customs/index";
-import { Modal } from "../../../components/NinjaComp";
+import { Modal, SectionContent } from "../../../components/NinjaComp";
 import { ContentModal } from "./ContentModal";
 
 const { GlitchTitle } = Customs;
@@ -9,7 +9,7 @@ export const Home = () => {
   const { t } = useTranslation();
 
   return (
-    <>
+    <SectionContent fullScreen>
       <Modal
         modalKey="home"
         borderless
@@ -23,6 +23,6 @@ export const Home = () => {
         subText={t("name-app.sub-title")}
         isSubGlitch
       />
-    </>
+    </SectionContent>
   );
 };
