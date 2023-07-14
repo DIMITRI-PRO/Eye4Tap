@@ -21,18 +21,22 @@ const UserHeader = () => {
 
   const title = (
     <Link to="/profile">
-      <img
-        className="menu profile-picture"
-        src={user?.picture || User}
-        alt={user?.pseudo}
-      />
+      {user?.picture ? (
+        <img
+          className="menu profile-picture"
+          src={user?.picture}
+          alt={user?.pseudo}
+        />
+      ) : (
+        <User />
+      )}
       {user?.pseudo}
     </Link>
   );
 
   if (user?.pseudo) return title;
 
-  return <div />;
+  return null;
 };
 
 export const AuthRouter = () => {
