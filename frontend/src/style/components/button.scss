@@ -37,7 +37,7 @@
     cursor: pointer;
     color: $text-btn-basic-hover;
   }
-  
+
   &:active {
     color: $text-btn-basic-hover;
     transition: none;
@@ -50,7 +50,7 @@
   border: none;
   border-radius: 50%;
   height: auto;
-  
+
   &:hover {
     transition: ease-in-out 0.2s;
     background-color: $btn-circle-hover;
@@ -63,7 +63,7 @@
   border: none;
   border-radius: 0.3rem;
   height: auto;
-  
+
   &:hover {
     color: $btn-borderless-hover;
     transition: ease-in-out 0.2s;
@@ -73,8 +73,26 @@
   &.danger {
     background-color: $btn-danger;
     color: $text-general-hover;
+
     &:hover {
       background-color: $btn-danger-hover;
     }
+  }
+}
+
+.btn-submit {
+  background-color: $btn-submit;
+  padding: 0.5rem 1rem;
+  border: solid 0.2rem $btn-submit-border;
+  border-radius: 0.3rem;
+  height: auto;
+  color: $text-btn-submit;
+
+  &:hover {
+    cursor: pointer;
+    color: $text-btn-submit-hover;
+    transition: ease-in-out 0.3s;
+    border-color: $btn-submit-border-hover;
+    background-color: $btn-submit-hover;
   }
 }
