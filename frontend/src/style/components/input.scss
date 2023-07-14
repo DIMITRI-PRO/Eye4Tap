@@ -1,0 +1,26 @@
+.form-item.child-container {
+    width: 100%;
+    padding: 0;
+    position: relative;
+
+    &>input {
+        background-color: $form-input;
+
+        &.child-password {
+            padding-right: 2rem;
+        }
+    }
+
+    &>.eye-password {
+        padding: 0;
+        background-color: $form-input;
+        width: auto;
+        position: absolute;
+        top: 0.8rem;
+        right: 0.8rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
