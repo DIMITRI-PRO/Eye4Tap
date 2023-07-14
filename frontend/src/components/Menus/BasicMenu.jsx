@@ -31,7 +31,6 @@ export const BasicMenu = ({
     justifyContent: justify,
     gap,
   };
-  const navStyle = { width: "100%" };
   const linkStyle = { paddingLeft: "1rem", display: "flex" };
   const bodyStyle = {
     paddingRight: "20px",
@@ -113,14 +112,14 @@ export const BasicMenu = ({
       className="ninja nav-header-basic"
       style={{ padding: "0.5rem 1rem" }}
     >
-      <nav className="ninja nav-basic" style={navStyle}>
+      <nav className="ninja nav-basic">
         <div style={linkStyle}>
           <Link
             to="/"
             className="ninja nav-home-link"
             style={{ width: logoSize }}
           >
-            <Button name="menu" icon={icon || Home} />
+            {icon || <Home />}
           </Link>
           {homeExtra}
         </div>
@@ -155,8 +154,9 @@ export const BasicMenu = ({
             onClick={() => {
               setDisplayMobileMenu(!displayMobileMenu);
             }}
-            icon={MoreVertical}
-          />
+          >
+            <MoreVertical />
+          </Button>
           {displayMobileMenu && (
             <ul id="menu-item-list" className="ninja nav-ul-mobile">
               <li className="ninja nav-header-mobile">
@@ -164,20 +164,26 @@ export const BasicMenu = ({
                   <h2>{t("menu.title")}</h2>
                   <Button
                     name="circle"
-                    icon={X}
                     onClick={() => {
                       setDisplayMobileMenu(false);
                     }}
-                  />
+                  >
+                    <X />
+                  </Button>
                 </div>
                 {userData && (
                   <>
-                    <img
-                      src={userData?.picture || User}
-                      height={80}
-                      width={80}
-                      alt="profile"
-                    />
+                    {userData?.picture ? (
+                      <img
+                        className="ninja nav-li-mobile image-profile"
+                        src={userData?.picture}
+                        height={80}
+                        width={80}
+                        alt="profile"
+                      />
+                    ) : (
+                      <User />
+                    )}
                     <p>{userData?.pseudo}</p>
                   </>
                 )}
