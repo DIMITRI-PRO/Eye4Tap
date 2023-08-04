@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-syntax */
 import fs from "fs";
 import dotenv from "dotenv";
 import mysql from "mysql2/promise";
@@ -21,11 +20,9 @@ const pool = mysql.createPool({
 });
 
 pool.getConnection().catch(() => {
-  console.warn(
+  loggingError(
     "Warning:",
-    "Failed to get a DB connection.",
-    "Did you create a .env file with valid credentials?",
-    "Routes using models won't work as intended"
+    " Failed to get a DB connection. Did you create a .env file with valid credentials? Routes using models won't work as intended"
   );
 });
 
@@ -49,7 +46,7 @@ for (const subDir of subDirs) {
     const Manager = models[subDir];
 
     if (Manager.setConnection) Manager.setConnection(pool);
-    else console.error(`Cannot set connection with: [${subDir}] directory`);
+    else loggingError("Cannot set connection with:", ` [${subDir}] directory`);
   } catch (err) {
     loggingError(
       "[Export: Failed] or [MissingFile: index.js]",
@@ -57,4 +54,5 @@ for (const subDir of subDirs) {
     );
   }
 }
+
 export default models;
