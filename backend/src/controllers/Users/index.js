@@ -4,9 +4,9 @@ const { Users } = models;
 
 const getUsers = async (req, res) => {
   try {
-    const [rows] = await Users.findAll();
-    // eslint-disable-next-line no-param-reassign
-    rows.forEach((user) => delete user.password);
+    const [rows] = await Users.find(
+      "id,lastname,firstname,email,pseudo,picture"
+    );
     res.send(rows);
   } catch (err) {
     res.status(500);
@@ -16,7 +16,10 @@ const getUsers = async (req, res) => {
 const getUser = async ({ payload }, res) => {
   try {
     const { sub } = payload;
-    const [rows] = await Users.findUser(sub);
+    const [rows] = await Users.find(
+      "lastname, firstname, email, pseudo, picture",
+      { id: sub }
+    );
     if (rows[0] == null) res.sendStatus(404);
     else res.send(rows[0]);
   } catch (err) {
@@ -26,7 +29,7 @@ const getUser = async ({ payload }, res) => {
 
 const login = async (req, res, next) => {
   try {
-    const [users] = await Users.readForLogin(req.body);
+    const [users] = await Users.find({ email: req.body.email });
     if (users[0]) {
       req.user = users;
       next();
@@ -54,7 +57,7 @@ const updateUser = async ({ body, params }, res) => {
 const postUser = async ({ body }, res) => {
   try {
     const { email } = body;
-    const [isEmail] = await Users.findBy("email", email);
+    const [isEmail] = await Users.find("email", { email });
 
     if (isEmail[0])
       res.status(409).json({ message: "Item already taken", email });
@@ -81,9 +84,7 @@ const deleteUser = async ({ params }, res) => {
 const userControllers = (router) => {
   router.get("/users", getUsers);
 
-  router.get("/users/:id", getUser);
-  router.put("/users/:id", updateUser);
-  router.delete("/users/:id", deleteUser);
+  router.route("/users/:id").get(getUser).put(updateUser).delete(deleteUser);
 };
 
 export default { userControllers, postUser, login };
