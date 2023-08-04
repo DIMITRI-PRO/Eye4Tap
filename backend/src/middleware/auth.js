@@ -11,8 +11,8 @@ const hashPassword = async (req, res, next) => {
       t: 2,
       p: 1,
     });
-    req.body.hashedPassword = hashedPassword;
     delete req.body.password;
+    req.body.password = hashedPassword;
     next();
   } catch (err) {
     console.warn(err);
@@ -45,16 +45,20 @@ const verifyPassword = async (req, res) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    const authorizationHeader = req.get("Authorization");
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
+    if (process.env.ACTIVE_TOKEN === "false") {
+      next();
+    } else {
+      const authorizationHeader = req.get("Authorization");
+      if (authorizationHeader == null) {
+        throw new Error("Authorization header is missing");
+      }
+      const [type, token] = authorizationHeader.split(" ");
+      if (type !== "Bearer") {
+        throw new Error("Authorization header has not the 'Bearer' type");
+      }
+      req.payload = verifyJWT(token, process.env.JWT_SECRET);
+      next();
     }
-    const [type, token] = authorizationHeader.split(" ");
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-    req.payload = verifyJWT(token, process.env.JWT_SECRET);
-    next();
   } catch (err) {
     console.error("Erreur de verification Token:", err);
     res.location(`/login`).clearCookie(process.env.NAME_COOKIE).sendStatus(401);

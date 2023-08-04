@@ -6,13 +6,25 @@ CREATE TABLE
         `email` varchar(254) NOT NULL UNIQUE KEY,
         `password` varchar(254) NOT NULL,
         `pseudo` varchar(15) NOT NULL,
-        `picture` varchar(254) NULL
+        `picture` varchar(254) NULL,
+        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
 CREATE TABLE
     `scores` (
-        `id` int NOT NULL AUTO_INCREMENT,
+        `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         `value_score` int NOT NULL,
         `id_user` int NOT NULL,
-        PRIMARY KEY (`id`)
+        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        `id_difficulty` int NOT NULL
     );
+
+CREATE TABLE
+    `difficulty` (
+        `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+        `name` varchar(45) NOT NULL,
+        `speed` int NOT NULL,
+        `coef_point` FLOAT NOT NULL,
+        `malus_point` FLOAT NOT NULL
+    )

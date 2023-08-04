@@ -1,47 +1,19 @@
+import Joi from "joi";
 import AbstractManager from "../AbstractManager.js";
-import format from "../../utils/formatQuery.js";
-
-const { formatQuery } = format;
 
 class Users extends AbstractManager {
   constructor() {
-    super({ table: "users" });
-  }
-
-  insert(users) {
-    return this.connection.query(
-      `insert into ${this.table}(lastname, firstname, email, password, pseudo, picture) values (?, ?, ?, ?, ?, ?);`,
-      [
-        users.lastname,
-        users.firstname,
-        users.email,
-        users.hashedPassword,
-        users.pseudo,
-        users.picture,
-      ]
-    );
-  }
-
-  findUser(id) {
-    return this.connection.query(
-      `select lastname, firstname, email, pseudo, picture from ${this.table} where id = ?;`,
-      [id]
-    );
-  }
-
-  readForLogin({ email }) {
-    return this.connection.query(
-      `select * from ${this.table} where email = ?;`,
-      [email]
-    );
-  }
-
-  update(users) {
-    const { query, values } = formatQuery(users);
-    return this.connection.query(
-      `update ${this.table} set ${query} where id = ?`,
-      [...values, users.id]
-    );
+    super({
+      table: "users",
+      schema: Joi.object({
+        lastname: Joi.string().max(45).required(),
+        firstname: Joi.string().max(45).required(),
+        email: Joi.string().email().max(254).required(),
+        password: Joi.string().max(254).required(),
+        pseudo: Joi.string().max(45).required(),
+        picture: Joi.string().max(254).allow(null),
+      }),
+    });
   }
 }
 
