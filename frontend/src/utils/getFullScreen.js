@@ -21,7 +21,7 @@ export const enterFullscreen = () => {
 };
 
 export const exitFullscreen = () => {
-  if (document.exitFullscreen) {
+  if (document?.exitFullscreen) {
     document.exitFullscreen();
   } else {
     switch (true) {
