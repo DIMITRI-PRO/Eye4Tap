@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate, Link } from "react-router-dom";
-import { AllRoutes } from "./AllRoutes";
+import { useNavigate, Route, Routes } from "react-router-dom";
 import { useMessageContext } from "../context/MessageNotifContext";
 import { useAuthContext } from "../context/AuthContext";
 import {
@@ -13,36 +12,14 @@ import {
 } from "../components/NinjaComp";
 import { publicRoutes } from "../constant/publicRoutes";
 import { privateRoutes } from "../constant/privateRoutes";
-import { User } from "../assets/FeatherIcons";
-
-const UserHeader = () => {
-  const { authMemo } = useAuthContext();
-  const { user } = authMemo;
-
-  const title = (
-    <Link to="/profile">
-      {user?.picture ? (
-        <img
-          className="menu profile-picture"
-          src={user?.picture}
-          alt={user?.pseudo}
-        />
-      ) : (
-        <User />
-      )}
-      {user?.pseudo}
-    </Link>
-  );
-
-  if (user?.pseudo) return title;
-
-  return null;
-};
+import { PrivateRouter } from "./PrivateRouters/PrivateRouters";
+import { NotFound, Home, Register, Login } from "../pages/index";
+import { UserHeader } from "../components/Customs/UserHeader/UserHeader";
 
 export const AuthRouter = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { deleteCookie, authMemo } = useAuthContext();
+  const { deleteCookie, authMemo, displayFooter } = useAuthContext();
   const { displayMessage, setDisplayMessage, content, setErrors } =
     useMessageContext();
   const { isLogin, user } = authMemo;
@@ -80,8 +57,14 @@ export const AuthRouter = () => {
         content={content}
         setErrors={setErrors}
       />
-      <BasicMenuLayer footer={FooterBar}>
-        <AllRoutes routes={allRoutes} />
+      <BasicMenuLayer footer={FooterBar} displayFooter={displayFooter}>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          {PrivateRouter()}
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BasicMenuLayer>
     </>
   );

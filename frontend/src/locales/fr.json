@@ -58,6 +58,25 @@
           }
         }
       }
+    },
+    "game": {
+      "calibrate": {
+        "modal": {
+          "title": "Instructions :",
+          "list": {
+            "text-1": "Attentez que la caméra s'affiche",
+            "text-2": "Attendez que le pointeur rouge s'affiche",
+            "text-3": "Positionnez votre visage au center du carré dans l'affichage de la caméra (elle deviendra vert lorsque votre visage est détecter)",
+            "text-4": "Calibez votre pointer en cliquant frénétiquement sur les croix bleu et en vous focalisant sur le curseur (Attention! Ne bougez pas votre visage lors du calibrage, seuls vos yeux doivent bouger)",
+            "text-5": "Une fois que votre calibrage vous convient, appuyez sur End Calibrate pour valider vos paramètres"
+          },
+          "message": "Attention! Gardez votre visage dans la même configuration lors vous démarrerez le jeu"
+        },
+        "buttons": {
+          "exit": "Quitter",
+          "ok": "Quitter"
+        }
+      }
     }
   }
 }
