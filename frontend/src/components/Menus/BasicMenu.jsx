@@ -115,6 +115,7 @@ export const BasicMenu = ({
       <nav className="ninja nav-basic">
         <div style={linkStyle}>
           <Link
+            id="nav-home-link-btn"
             to="/"
             className="ninja nav-home-link"
             style={{ width: logoSize }}
@@ -182,7 +183,7 @@ export const BasicMenu = ({
                         alt="profile"
                       />
                     ) : (
-                      <User />
+                      <User height={80} width={80} />
                     )}
                     <p>{userData?.pseudo}</p>
                   </>
