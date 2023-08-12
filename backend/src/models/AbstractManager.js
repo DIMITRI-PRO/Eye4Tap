@@ -36,7 +36,7 @@ class AbstractManager {
       `select ${selector} from ${this.table} ${
         query.length ? "where " : ""
       } ${query?.join(" and ")} ${sorter}`,
-      [values]
+      [...values]
     );
   }
 
