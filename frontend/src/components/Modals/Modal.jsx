@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Button } from "../Buttons/Button";
@@ -12,24 +12,43 @@ export const Modal = ({
   footer,
   customName,
   withActionButtons,
+  withCloseButton,
   borderless,
   onValidate,
+  onClose,
+  onOpen,
+  isOpen,
+  aboveNavMenu,
 }) => {
   const { t } = useTranslation();
-  const [isDisplay, setIsDisplay] = useState(initialDisplay || false);
+  const [isDisplay, setIsDisplay] = useState(initialDisplay);
+  if ((isOpen || isDisplay) && onOpen) onOpen?.();
 
   const validateAction = () => {
     if (onValidate) onValidate();
     else setIsDisplay(false);
   };
 
-  document.addEventListener("click", (event) => {
-    const modal = document.getElementById(`ninja-modal-${modalKey}`);
-    if (isDisplay && !modal?.contains(event.target)) setIsDisplay(false);
-  });
+  useCallback(() => {
+    document.addEventListener("click", (event) => {
+      const modal = document.getElementById(`ninja-modal-${modalKey}`);
+      if (isDisplay && !modal?.contains(event.target)) setIsDisplay(false);
+    });
+  }, [isDisplay]);
 
-  return isDisplay && modalKey ? (
-    <div className={`ninja modal-${customName || "default"}-background`}>
+  useCallback(() => {
+    document.addEventListener("click", (event) => {
+      const modal = document.getElementById(`ninja-modal-${modalKey}`);
+      if (isOpen && !modal?.contains(event.target)) onClose?.();
+    });
+  }, [isOpen]);
+
+  return (isDisplay || isOpen) && modalKey ? (
+    <div
+      className={`ninja modal-${customName || "default"}-background ${
+        aboveNavMenu ? "above-nav" : ""
+      }`}
+    >
       <div
         id={`ninja-modal-${modalKey}`}
         className="ninja modal-default container"
@@ -37,9 +56,19 @@ export const Modal = ({
         <div className="ninja modal-default header">
           {header}
           <div className={`ninja modal-${customName || "default"} header btn`}>
-            <Button type="circle" onClick={() => setIsDisplay(false)}>
-              <X fontSize="1.5rem" />
-            </Button>
+            {withCloseButton && (
+              <Button
+                type="circle"
+                onClick={() => {
+                  if (onClose) {
+                    onClose();
+                    setIsDisplay(false);
+                  } else setIsDisplay(false);
+                }}
+              >
+                <X fontSize="1.5rem" />
+              </Button>
+            )}
           </div>
         </div>
         {!borderless && (
@@ -58,7 +87,7 @@ export const Modal = ({
               <Button type="cancel" onClick={() => setIsDisplay(false)}>
                 {t(`ninja.modal-default.buttons.cancel`)}
               </Button>
-              <Button type="validate" onClick={validateAction}>
+              <Button type="validate" onClick={() => validateAction()}>
                 {t(`ninja.modal-default.buttons.validate`)}
               </Button>
             </div>
@@ -77,8 +106,13 @@ Modal.propTypes = {
   children: PropTypes.node,
   footer: PropTypes.node,
   withActionButtons: PropTypes.bool,
+  withCloseButton: PropTypes.bool,
   borderless: PropTypes.bool,
   onValidate: PropTypes.func,
+  onOpen: PropTypes.func,
+  onClose: PropTypes.func,
+  isOpen: PropTypes.bool,
+  aboveNavMenu: PropTypes.bool,
 };
 Modal.defaultProps = {
   initialDisplay: false,
@@ -87,6 +121,11 @@ Modal.defaultProps = {
   children: null,
   footer: null,
   withActionButtons: true,
+  withCloseButton: true,
   borderless: true,
   onValidate: null,
+  onOpen: null,
+  onClose: null,
+  isOpen: null,
+  aboveNavMenu: false,
 };
