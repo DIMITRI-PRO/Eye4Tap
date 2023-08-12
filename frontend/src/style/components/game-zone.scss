@@ -1,0 +1,25 @@
+.grid-game-zone {
+    background-color: $primary;
+
+    & > .grid-card-zone {
+        background-color: $game-card;
+        border-radius: 1.5rem;
+
+        &.selected {
+            background-color: $game-card-selected;
+        }
+
+        &.selected-eye {
+            background-color: $game-card-eye-selected;
+            transition: ease-in-out 0.2s;
+            transform: scale(1.1);
+            border: solid 0.5rem $game-card-eye-selected-border;
+        }
+
+        &.eye {
+            background-color: $game-card-eye;
+            transition: ease-in-out 0.2s;
+            transform: scale(1.1);
+        }
+    }
+}

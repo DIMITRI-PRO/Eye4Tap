@@ -21,7 +21,7 @@
 
         &:invalid {
             border-color: $text-danger;
-            animation: wizz 1s ease-in-out;
+            animation: wizz 0.5s ease-in-out;
 
         }
     }

@@ -46,6 +46,7 @@
 
 .btn-circle {
   background-color: transparent;
+  font-size: 1rem;
   padding: 0.2rem;
   border: none;
   border-radius: 50%;
@@ -94,5 +95,26 @@
     transition: ease-in-out 0.3s;
     border-color: $btn-submit-border-hover;
     background-color: $btn-submit-hover;
+  }
+}
+
+.btn-link-game {
+  z-index: 3;
+  background-color: transparent;
+  color: $btn-link-border-hover;
+  border-color: #fcfcfc;
+  font-size: 1.5rem;
+  font-weight: 800;
+  padding: 0.5rem 1rem;
+  font-family: 'Monitorica', sans-serif;
+  border-radius: 0.5rem;
+  position: relative;
+  transition: ease-in-out 0.4s;
+  
+  &:hover {
+      border-color: $btn-link-border-hover;
+      color: $btn-link-hover;
+      transform: scale(1.1);
+      cursor: pointer;
   }
 }

@@ -1,0 +1,45 @@
+footer.footer-container {
+    background-color: $primary;
+    width: 100%;
+    z-index: 5;
+    -webkit-box-shadow: 0px -5px 30px 1px #000000;
+    box-shadow: 0px -5px 30px 1px #0000002a;
+}
+
+.right-reserved {
+    height: 5rem;
+    margin: 5rem;
+}
+
+#footer-separator {
+    margin: 0 auto;
+    border: none;
+    width: 90%;
+    height: 0.1rem;
+    background-color: $tertiary;
+}
+
+#footer-list-url {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    list-style: none;
+
+    & > li {
+        color: $text-general;
+
+        & > a {
+            color: $text-general;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+        }
+
+        &:visited {
+            color: $text-general;
+        }
+    }
+}

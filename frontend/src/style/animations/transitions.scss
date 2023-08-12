@@ -1,0 +1,11 @@
+@keyframes backgroundPulsing {
+    0% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(2);
+    }
+    100% {
+        transform: scale(1);
+      }
+  }
