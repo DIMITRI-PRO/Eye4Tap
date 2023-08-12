@@ -153,7 +153,7 @@ FormItem.defaultProps = {
   errorMessage: null,
   required: false,
   readOnly: false,
-  displayLabel: !true,
+  displayLabel: true,
 };
 
 export const Forms = { Form, FormItem };
