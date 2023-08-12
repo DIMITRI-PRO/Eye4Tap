@@ -47,6 +47,7 @@ export const AuthRouter = () => {
       <BasicMenu
         userData={user}
         headers={allRoutes}
+        icon={<span id="title-home-link">EYE 4 TAP</span>}
         typeMenu="only-mobile"
         extraMenuButton={renderExtraButtons(isLogin)}
         homeExtra={<UserHeader />}

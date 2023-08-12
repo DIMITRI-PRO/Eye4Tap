@@ -26,6 +26,8 @@ export const AuthContextProvider = ({ children }) => {
   const [refreshUser, setRefreshUser] = useState(false);
   const [id, setId] = useState(null);
 
+  const [displayFooter, setDisplayFooter] = useState(true);
+
   const getCookie = (name) => {
     const cookieValue = document.cookie.match(
       `(^|;)\\s*${name}\\s*=\\s*([^;]+)`
@@ -44,7 +46,7 @@ export const AuthContextProvider = ({ children }) => {
 
     // eslint-disable-next-line no-useless-catch
     try {
-      let method = methodType;
+      let method = methodType.toLowerCase();
       let resourceName = resource;
 
       switch (true) {
@@ -56,6 +58,9 @@ export const AuthContextProvider = ({ children }) => {
           break;
         case methodType === "post":
           method = "post";
+          break;
+        case methodType === "put":
+          method = "put";
           break;
         case methodType === "get":
           method = "get";
@@ -111,6 +116,8 @@ export const AuthContextProvider = ({ children }) => {
     setCookie(getCookie(COOKIE));
     if (cookie) setIsLogin(true);
     else setIsLogin(false);
+    if (location.pathname.split("/").includes("game")) setDisplayFooter(false);
+    else setDisplayFooter(true);
   }, [location, cookie]);
 
   return (
@@ -124,6 +131,8 @@ export const AuthContextProvider = ({ children }) => {
         authMemo,
         refreshUser,
         setRefreshUser,
+        displayFooter,
+        setDisplayFooter,
       }}
     >
       {children}

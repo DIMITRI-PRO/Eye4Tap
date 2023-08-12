@@ -37,16 +37,24 @@ ScreenButtons.propTypes = {
   change: PropTypes.func.isRequired,
 };
 
-export const SectionContent = ({ children, extraContent, fullScreen }) => {
+export const SectionContent = ({
+  pageName,
+  children,
+  extraContent,
+  fullScreenActions,
+  fullScreen,
+}) => {
   const [isFullScreen, setIsFullScreen] = useState(false);
   return (
     <>
       <section
-        className={`ninja section-content ${isFullScreen ? "full-screen" : ""}`}
+        className={`ninja section-content ${pageName} ${
+          isFullScreen || fullScreen ? "full-screen" : ""
+        }`}
       >
         {children}
       </section>
-      {fullScreen && (
+      {fullScreenActions && (
         <ScreenButtons isFull={isFullScreen} change={setIsFullScreen} />
       )}
       {extraContent?.()}
@@ -57,9 +65,13 @@ export const SectionContent = ({ children, extraContent, fullScreen }) => {
 SectionContent.propTypes = {
   children: PropTypes.node.isRequired,
   extraContent: PropTypes.func,
+  fullScreenActions: PropTypes.bool,
   fullScreen: PropTypes.bool,
+  pageName: PropTypes.string,
 };
 SectionContent.defaultProps = {
   extraContent: null,
+  fullScreenActions: false,
   fullScreen: false,
+  pageName: "",
 };

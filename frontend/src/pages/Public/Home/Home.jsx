@@ -14,7 +14,7 @@ export const Home = () => {
   const { isLogin } = authMemo;
 
   return (
-    <SectionContent fullScreenActions>
+    <SectionContent pageName="home hive">
       <Modal
         modalKey="home"
         borderless
@@ -28,13 +28,23 @@ export const Home = () => {
         subText={t("name-app.sub-title")}
         isSubGlitch
       />
-      {isLogin && (
+      {isLogin ? (
         <Button
+          name="link-game"
           onClick={() => {
             navigate("/game");
           }}
         >
-          {t("home.buttons.start")}
+          {t("pages.home.buttons.start")}
+        </Button>
+      ) : (
+        <Button
+          name="link-game"
+          onClick={() => {
+            navigate("/login");
+          }}
+        >
+          {t("pages.home.buttons.login")}
         </Button>
       )}
     </SectionContent>

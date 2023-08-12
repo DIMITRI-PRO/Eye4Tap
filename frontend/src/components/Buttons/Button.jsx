@@ -1,9 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-export const Button = ({ id, name, icon, type, onClick, children }) => {
+export const Button = ({
+  id,
+  name,
+  icon,
+  type,
+  onClick,
+  children,
+  disabled,
+}) => {
   return (
     <button
+      disabled={disabled}
       id={id || null}
       className={`ninja btn-${name || type || "basic"}`}
       type={type || "button"}
@@ -23,6 +32,7 @@ Button.propTypes = {
   icon: PropTypes.node,
   onClick: PropTypes.func,
   children: PropTypes.node,
+  disabled: PropTypes.bool,
 };
 Button.defaultProps = {
   id: null,
@@ -31,4 +41,5 @@ Button.defaultProps = {
   icon: null,
   onClick: () => {},
   children: null,
+  disabled: false,
 };
