@@ -1,7 +1,6 @@
-## Concept
+## Figma
 
-This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.
-It's pre-configured with a set of tools which'll help students produce industry-quality and easier-to-maintain code, while staying as simple as possible to use.
+design : https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=design&node-id=0%3A1&mode=design&t=h9HLYsSAJAfk0RIv-1
 
 ## Setup & Use
 
@@ -21,8 +20,6 @@ It's pre-configured with a set of tools which'll help students produce industry-
 - `dev-back` : Starts the Express backend server
 - `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
 - `fix` : Fixes linter errors (run it if `lint` growls on your code !)
-
-## FAQ
 
 ### Tools
 
