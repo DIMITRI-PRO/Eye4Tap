@@ -1,16 +1,25 @@
 // Importer les variables de theme
 @import "themes/basicTheme";
 
+//Import des fonts
+@import "fonts/fonts";
+
 //Importer keyFrames
 @import "animations/movements";
+@import "animations/loaders";
+@import "animations/transitions";
+
+.hidden {
+  display: none;
+}
 
 html,
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 16px;
-  font-family: sans-serif;
+  font-size: 20px;
+  font-family: "Monitorica", sans-serif;
 }
 
 /* Mixin Responsive */
@@ -43,6 +52,16 @@ body {
 @import "components/form-item";
 @import "components/input";
 @import "components/section-content";
+@import "components/game-zone";
+@import "components/calibrate";
+@import "components/loader-spin";
+@import "components/countdown";
+@import "components/footer";
 
 // Importer les animations
 @import "animations/glitch";
+
+//Import all pages
+@import "pages/calibrate";
+@import "pages/home";
+@import "pages/game";

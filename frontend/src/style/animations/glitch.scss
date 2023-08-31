@@ -1,8 +1,17 @@
 .wrapper {
   text-align: center;
+  z-index: 2;
   padding: 1rem;
   width: 80%;
-  margin: 0 auto
+  margin: 0 auto;
+
+  & > h1 {
+    font-family: 'Maizen', sans-serif;
+  }
+  
+  & >p.sub {
+    font-family: 'Monitorica', sans-serif;
+  }
 }
 
 @mixin glitchCopy {
@@ -18,7 +27,6 @@
   position: relative;
   color: $glitch-text;
   font-size: 4rem;
-  letter-spacing: 0.5rem;
   animation: glitch-skew 1s infinite linear alternate-reverse;
 
   &.sub {

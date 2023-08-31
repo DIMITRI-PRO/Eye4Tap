@@ -1,0 +1,24 @@
+#count-down-game {
+    color: $text-light;
+    z-index: 1;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    background-color: rgba(52, 52, 52, 0.665);
+    border: 0.5rem solid rgb(176, 174, 174);
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    margin: 0;
+    height: auto;
+
+
+    & > .child.title {
+        margin: 0;
+
+        &.warn {
+            color: $text-danger;
+            animation: pulse 1s infinite;
+        }
+    }
+}

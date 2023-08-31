@@ -1,30 +1,41 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useMessageContext } from "../../context/MessageNotifContext";
-import { useAuthContext } from "../../context/AuthContext";
-import { Form, FormItem, Button } from "../../components/NinjaComp";
+import { useMessageContext } from "../../../context/MessageNotifContext";
+import { useAuthContext } from "../../../context/AuthContext";
+import {
+  Form,
+  FormItem,
+  Button,
+  SectionContent,
+} from "../../../components/NinjaComp";
 
 export const Profile = () => {
   const { t } = useTranslation();
-  const { responseMessage } = useMessageContext();
+  const { responseMessage, messageStatus } = useMessageContext();
   const { requestAPI, authMemo, setUser } = useAuthContext();
   const { id, user } = authMemo;
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const updateUser = async (body) => {
+    setIsLoading(true);
     try {
-      await requestAPI("patch", `users/${id}`, body);
+      const data = await requestAPI("patch", `users/${id}`, body);
 
       setUser((prev) => {
         return { ...prev, ...body };
       });
+      messageStatus(data);
     } catch (e) {
       responseMessage(e);
     }
+    setIsLoading(false);
   };
 
   return (
     id && (
-      <>
-        <div>{t("profile.title")}</div>
+      <SectionContent pageName="profile">
+        <h1>{t("profile.title")}</h1>
         <Form onSubmit={updateUser} initialValues={user}>
           <FormItem
             label={t("register.label.lastname")}
@@ -44,9 +55,11 @@ export const Profile = () => {
             dataName="pseudo"
             required
           />
-          <Button type="submit">{t("buttons.save")}</Button>
+          <Button type="submit" name="link-game" isLoading={isLoading}>
+            {t("buttons.save")}
+          </Button>
         </Form>
-      </>
+      </SectionContent>
     )
   );
 };

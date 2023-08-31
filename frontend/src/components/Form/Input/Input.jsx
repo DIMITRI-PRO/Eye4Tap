@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Eye, EyeOff } from "../../assets/FeatherIcons";
+import { Eye, EyeOff } from "../../../assets/FeatherIcons";
 
 export const Input = ({ ...props }) => {
   const [displayText, setDisplayText] = useState("text");
@@ -26,7 +26,7 @@ export const Input = ({ ...props }) => {
             setShow(!show);
           }}
         >
-          {show ? <Eye /> : <EyeOff />}
+          {show ? <EyeOff /> : <Eye />}
         </div>
       )}
     </div>
