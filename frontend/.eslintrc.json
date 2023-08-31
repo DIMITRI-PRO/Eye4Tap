@@ -16,6 +16,9 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "ignorePatterns": [
+    "src/utils/webgazer/webgazer.js"
+  ],
   "plugins": ["react", "import", "jest"],
   "rules": {
     "no-console": "off",
