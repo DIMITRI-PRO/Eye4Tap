@@ -22,7 +22,7 @@ export const InstructionsModal = ({ display, onClose }) => {
         {renderListText?.(
           "pages.game.calibrate.modal.list",
           "text",
-          5,
+          3,
           "pages.game"
         )}
       </ol>
