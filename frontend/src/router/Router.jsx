@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, Route, Routes } from "react-router-dom";
-import { useMessageContext } from "../context/MessageNotifContext";
 import { useAuthContext } from "../context/AuthContext";
 import {
   BasicMenu,
   Button,
   BasicMenuLayer,
-  NotificationMessage,
   FooterBar,
 } from "../components/NinjaComp";
 import { publicRoutes } from "../constant/publicRoutes";
@@ -15,13 +13,12 @@ import { privateRoutes } from "../constant/privateRoutes";
 import { PrivateRouter } from "./PrivateRouters/PrivateRouters";
 import { NotFound, Home, Register, Login } from "../pages/index";
 import { UserHeader } from "../components/Customs/UserHeader/UserHeader";
+import { LogOut } from "../assets/FeatherIcons";
 
 export const AuthRouter = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { deleteCookie, authMemo, displayFooter } = useAuthContext();
-  const { displayMessage, setDisplayMessage, content, setErrors } =
-    useMessageContext();
   const { isLogin, user } = authMemo;
   const [allRoutes, setAllRoutes] = useState(publicRoutes);
 
@@ -37,7 +34,7 @@ export const AuthRouter = () => {
 
   const renderExtraButtons = (isLog) =>
     isLog ? (
-      <Button name="borderless danger" onClick={logOut}>
+      <Button name="borderless danger" icon={<LogOut />} onClick={logOut}>
         {t("buttons.deconnexion")}
       </Button>
     ) : null;
@@ -52,12 +49,7 @@ export const AuthRouter = () => {
         extraMenuButton={renderExtraButtons(isLogin)}
         homeExtra={<UserHeader />}
       />
-      <NotificationMessage
-        display={displayMessage}
-        setDisplay={setDisplayMessage}
-        content={content}
-        setErrors={setErrors}
-      />
+
       <BasicMenuLayer footer={FooterBar} displayFooter={displayFooter}>
         <Routes>
           <Route path="/login" element={<Login />} />
