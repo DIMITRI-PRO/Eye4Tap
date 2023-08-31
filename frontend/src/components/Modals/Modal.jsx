@@ -45,6 +45,7 @@ export const Modal = ({
 
   return (isDisplay || isOpen) && modalKey ? (
     <div
+      id={`ninja-modal-${modalKey}-container`}
       className={`ninja modal-${customName || "default"}-background ${
         aboveNavMenu ? "above-nav" : ""
       }`}
