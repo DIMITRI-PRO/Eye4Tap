@@ -1,6 +1,6 @@
 // Variables
 $primary: #efefef;
-$secondary: #ffffff;
+$secondary: #fcfcfc;
 $tertiary: #52616e;
 $primary-border: #ebf5fd;
 $secondary-border: #63696e;
@@ -12,7 +12,7 @@ $dark: #e0e0e0;
 $btn-basic: #cfd6dc;
 $btn-basic-hover: #797d81;
 $btn-basic-border: #686b6d;
-$btn-basic-border-hover: #2e3031;
+$btn-basic-border-hover: rgb(46, 48, 49);
 // submit
 $btn-submit: #cfd6dc;
 $btn-submit-hover: #797d81;
@@ -51,14 +51,18 @@ $separator-color: #63696e;
 //icon-color
 $icon-home: #171718;
 $icon-home-hover: #8a8a8f;
+$icon-basic: #8a8a8f;
+$icon-warn: #f0b81f;
+$icon-danger: #de3518;
+$icon-succes: rgb(21, 209, 77);
 
 //forms
-$form-background: #77c8a1;
+$form-background: #efefef;
 $form-label: #ff00c1;
 $form-label: #ff00c1;
 $form-label-hover: #830363;
 $form-input: #ffffff;
-$form-input-hover: #090948;
+$form-input-hover: #c2c2c2;
 $form-border: #20cbac;
 $form-border-hover: #115850;
 
