@@ -1,13 +1,12 @@
-import fs from "fs";
-import dotenv from "dotenv";
+import { config } from "dotenv";
 import mysql from "mysql2/promise";
-import path, { dirname } from "path";
-import url, { fileURLToPath } from "url";
 import log from "../services/logger.js";
+import FileSystem from "../utils/FileSystem.js";
 
 const { loggingError } = log;
+const { getIndexDirectory, loadModules } = FileSystem;
 
-dotenv.config();
+config();
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 
@@ -26,33 +25,11 @@ pool.getConnection().catch(() => {
   );
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const directory = getIndexDirectory(import.meta.url);
 
-const subDirs = fs
-  .readdirSync(__dirname, { withFileTypes: true, encoding: "utf-8" })
-  .filter((dirent) => dirent.isDirectory())
-  .map((dirent) => dirent.name);
+const launchManagerConnection = ({ Manager, subDir }) => {
+  if (Manager.setConnection) Manager.setConnection(pool);
+  else loggingError("Cannot set connection with:", ` [${subDir}] directory`);
+};
 
-const models = {};
-
-for (const subDir of subDirs) {
-  try {
-    const indexPath = path.join(__dirname, subDir, "index.js");
-    const indexPathUrl = url.pathToFileURL(indexPath);
-    // eslint-disable-next-line no-await-in-loop
-    const module = await import(indexPathUrl.href);
-    models[subDir] = module.default;
-    const Manager = models[subDir];
-
-    if (Manager.setConnection) Manager.setConnection(pool);
-    else loggingError("Cannot set connection with:", ` [${subDir}] directory`);
-  } catch (err) {
-    loggingError(
-      "[Export: Failed] or [MissingFile: index.js]",
-      ` ${__dirname}\\${subDir}`
-    );
-  }
-}
-
-export default models;
+export default await loadModules(directory, launchManagerConnection);
