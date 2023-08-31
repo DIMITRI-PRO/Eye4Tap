@@ -24,10 +24,11 @@ const verifyPassword = async (req, res) => {
     const { user, body } = req;
     const [{ id, password, pseudo, email, firstname, lastname, picture }] =
       user;
+
     const isVerified = await verify(password, body.password);
+
     if (isVerified) {
-      const payload = { sub: id };
-      const token = sign(payload, process.env.JWT_SECRET, {
+      const token = sign({ sub: id }, process.env.JWT_SECRET, {
         expiresIn: `${process.env.EXPIRE_TIME}s`,
       });
       delete user.password;
@@ -35,9 +36,7 @@ const verifyPassword = async (req, res) => {
         maxAge: process.env.EXPIRE_TIME * 1000,
       });
       res.status(200).json({ pseudo, email, firstname, lastname, picture });
-    } else {
-      res.sendStatus(401);
-    }
+    } else res.sendStatus(401);
   } catch (error) {
     res.status(500);
   }
