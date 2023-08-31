@@ -127,12 +127,13 @@ export const BasicMenu = ({
 
         <ul id="nav-ul" className="ninja nav-ul" style={ulStyle}>
           {typeMenu !== "only-mobile" &&
-            headers.map(({ key, path, render, name, ignore }) => {
+            headers.map(({ key, path, render, name, ignore, iconLink }) => {
               if (!ignore) {
                 return (
                   <li key={key || name} className="ninja nav-li">
                     {render || (
                       <Link className="ninja nav-link" to={`${path}`}>
+                        {iconLink && iconLink}
                         {t(`menu.navigation.${name}`)}
                       </Link>
                     )}
@@ -190,12 +191,13 @@ export const BasicMenu = ({
                 )}
               </li>
               <hr />
-              {headers.map(({ key, path, render, name, ignore }) => {
+              {headers.map(({ key, path, render, name, ignore, iconLink }) => {
                 if (!ignore) {
                   return (
                     <li key={key || name} className="ninja nav-li-mobile">
                       {render || (
                         <Link className="ninja nav-link-mobile" to={`${path}`}>
+                          {iconLink && iconLink}
                           {t(`menu.navigation.${name}`)}
                         </Link>
                       )}
