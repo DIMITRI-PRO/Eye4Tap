@@ -4,11 +4,12 @@ const formatQuery = (data) => {
   const query = [];
   const values = [];
 
-  Object.entries(data).forEach(([key, value]) => {
-    query.push(`${key} = ?`);
-    values.push(value);
-  });
-
+  if (data) {
+    Object.entries(data).forEach(([key, value]) => {
+      query.push(`${key} = ?`);
+      values.push(value);
+    });
+  }
   return { query, values };
 };
 
@@ -29,10 +30,38 @@ const formatInsertQuery = (data) => {
   };
 };
 
-const formatSorter = (sorter = [], asc = true) => {
-  return sorter.length
-    ? `order by ${sorter.join(",")} ${asc ? "" : "desc"}`
+const formatSorter = ({
+  orderBy = [],
+  isAsc = true,
+  limit = null,
+  offSet = null,
+  join = null,
+  table = "",
+}) => {
+  let sorter = orderBy.length
+    ? `order by ${orderBy.join(",")} ${isAsc ? "" : "desc "}`
     : "";
+
+  let joinner = "";
+
+  if (join && table) {
+    joinner = join
+      .map((j) => {
+        return ` join ${j} on ${table}.id_${
+          j[j.length - 1] === "s" ? j.slice(0, -1) : j
+        } = ${j}.id `;
+      })
+      .join("");
+  }
+  if (limit && limit > 0) sorter += ` limit ${limit}`;
+  if (offSet && offSet > 0) sorter += ` offset ${offSet}`;
+  return { joinner, sorter };
 };
 
-export default { formatQuery, formatInsertQuery, formatSorter };
+const formatSelector = (value, table) => {
+  const join = value?.join;
+  if (join) return [...join, table].map((j) => `${j}.*`);
+  return value;
+};
+
+export default { formatQuery, formatInsertQuery, formatSorter, formatSelector };
