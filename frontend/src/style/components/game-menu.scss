@@ -1,0 +1,30 @@
+#ninja-modal-game-menu-container {
+    justify-content: flex-start;
+    & > #ninja-modal-game-menu {
+        width: auto;
+        box-shadow: none;
+        background: center / contain no-repeat url("../../../src/style/assets/background/template_hexa_01.png");
+        filter: drop-shadow(10px 10px 5px #44c6dd);
+
+        & > .body {
+            display: flex;
+            justify-content: center;
+
+            & > ul {
+                display: flex;
+                flex-flow: column nowrap;
+                justify-content: center;
+                align-items: center;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                gap: 0.5rem;
+
+                & > li > button {
+                    font-size: 1rem;
+                    background-color: #fcfcfc;
+                }
+            }
+        }
+    }
+}

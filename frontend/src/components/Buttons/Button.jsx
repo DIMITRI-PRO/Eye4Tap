@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Loader } from "../../assets/FeatherIcons";
 
 export const Button = ({
   id,
@@ -9,17 +10,18 @@ export const Button = ({
   onClick,
   children,
   disabled,
+  isLoading,
 }) => {
   return (
     <button
-      disabled={disabled}
+      disabled={disabled || isLoading}
       id={id || null}
       className={`ninja btn-${name || type || "basic"}`}
       type={type || "button"}
       onClick={onClick || null}
       style={{ display: "flex" }}
     >
-      {icon && <img src={icon} id={`${id}-icon`} alt="icon button" />}
+      {isLoading ? <Loader className="ninja btn-loader-spin" /> : icon && icon}
       {children}
     </button>
   );
@@ -33,6 +35,7 @@ Button.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   disabled: PropTypes.bool,
+  isLoading: PropTypes.bool,
 };
 Button.defaultProps = {
   id: null,
@@ -42,4 +45,5 @@ Button.defaultProps = {
   onClick: () => {},
   children: null,
   disabled: false,
+  isLoading: false,
 };

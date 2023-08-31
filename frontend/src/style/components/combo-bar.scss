@@ -1,0 +1,23 @@
+.combo-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    width: 100px;
+    height: 100px;
+    transition: ease-in-out 0.5s;
+
+    &.vertical {
+        justify-content: space-between;
+        flex-flow: row nowrap;
+
+        & > .combo-bar-fill {
+            align-self: flex-end;
+        }
+    }
+
+    & > .combo-bar-fill {
+        align-self: flex-start;
+        border-radius: 0.5rem;
+    }
+}

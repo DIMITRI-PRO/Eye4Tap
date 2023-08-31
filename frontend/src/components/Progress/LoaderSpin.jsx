@@ -12,7 +12,7 @@ export const LoaderSpin = ({ icon, size, text, style, display, name }) => {
       {text && (
         <span className={`ninja loader-text ${name || ""}`}>{text}</span>
       )}
-      <div className={`ninja loader-${name || "spin"}`}>
+      <div className={`ninja loader-${name || "spin spin"}`}>
         {icon || <Loader height={size} width={size} />}
       </div>
     </div>

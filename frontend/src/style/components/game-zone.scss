@@ -1,25 +1,81 @@
 .grid-game-zone {
-    background-color: $primary;
-
     & > .grid-card-zone {
-        background-color: $game-card;
-        border-radius: 1.5rem;
+        background: center / cover no-repeat url("../../../src/style/assets/background/background_template_hexa_00.png");
+        filter: drop-shadow(10px 10px 5px #0e5a66c0);
+        border: solid transparent 0.1rem;
+        border-radius: 2rem;
+        background-color: #fcfcfc28;
+
+        &#card-zone-1 {
+            transform: scale(1, 1);
+
+            &.selected-eye {
+                transition: ease-in-out 0.2s;
+                transform: scale(1.1, 1.1);
+            }
+
+            &.eye {
+                transform: scale(1.1, 1.1);
+            }
+        }
+
+        &#card-zone-2 {
+            transform: scale(-1, 1);
+
+            &.selected-eye {
+                transition: ease-in-out 0.2s;
+                transform: scale(-1.1, 1.1);
+            }
+
+            &.eye {
+                transform: scale(-1.1, 1.1);
+            }
+        }
+
+        &#card-zone-3 {
+            transform: scale(1, -1);
+
+            &.selected-eye {
+                transition: ease-in-out 0.2s;
+                transform: scale(1.1, -1.1);
+            }
+
+            &.eye {
+                transform: scale(1.1, -1.1);
+            }
+        }
+
+        &#card-zone-4 {
+            transform: scale(-1, -1);
+
+            &.selected-eye {
+                transition: ease-in-out 0.2s;
+                transform: scale(-1.1, -1.1);
+            }
+
+            &.eye {
+                transform: scale(-1.1, -1.1);
+            }
+        }
 
         &.selected {
-            background-color: $game-card-selected;
+            transition: ease-in-out 0.2s;
+            filter: drop-shadow(10px 10px 5px #cf0e58);
         }
 
         &.selected-eye {
-            background-color: $game-card-eye-selected;
+            filter: drop-shadow(10px 10px 5px #44c6dd);
+            z-index: 2;
             transition: ease-in-out 0.2s;
-            transform: scale(1.1);
-            border: solid 0.5rem $game-card-eye-selected-border;
+            border-bottom: solid #44c6dd 0.2rem;
+            border-right: solid #44c6dd 0.2rem;
         }
 
         &.eye {
-            background-color: $game-card-eye;
+            z-index: 2;
             transition: ease-in-out 0.2s;
-            transform: scale(1.1);
+            border-bottom: solid #0e5a66c0 0.2rem;
+            border-right: solid #0e5a66c0 0.2rem;
         }
     }
 }

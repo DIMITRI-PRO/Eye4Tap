@@ -1,0 +1,82 @@
+$animation-duration: 1s;
+$animation-delay: 0.1s;
+$list-items: 5;
+
+div.ninja.datatable {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    height: auto;
+    margin-bottom: 10rem;
+    background-color: #fcfcfc;
+
+    & > table.ninja.table-container {
+        min-width: 49.5rem;
+        background-color: #cccccc;
+        overflow-y: scroll;
+        scroll-behavior: smooth;
+
+        td,
+        th {
+            border: none;
+        }
+
+        & > thead > tr {
+            height: 2.5rem;
+            & > th {
+                padding: 1rem 1.2rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        & > tbody {
+            & > tr {
+                background-color: #cccccc;
+                & > td {
+                    height: 2rem;
+                    padding: 1rem 1.2rem;
+                    font-size: 1.1rem;
+                }
+
+                &.loading-infinite {
+                    transition: ease-in-out 0.5s;
+                    background-color: #eeeeee;
+                    opacity: 0;
+                    transform: translateY(10px);
+                    animation: fade-in-up $animation-duration ease-in-out infinite;
+                }
+
+                &.loading-once {
+                    transition: ease-in-out 0.5s;
+                    background-color: #eeeeee;
+                    opacity: 0;
+                    transform: translateY(10px);
+                    animation: fade-in-up $animation-duration ease-in-out 1 forwards;
+                }
+            }
+        }
+    }
+
+    & > div.pagination-basic {
+        position: sticky;
+        bottom: 0;
+        background-color: #fcfcfc;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 1rem;
+        border-radius: 0.8rem;
+        box-shadow: 0px -8px 5px 0px #0000003f;
+
+        & > .pagination-basic-numerotation {
+            transition: ease-in-out 0.5s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 700;
+            color: $btn-link-hover;
+        }
+    }
+}
