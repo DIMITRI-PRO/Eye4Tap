@@ -17,9 +17,10 @@ export const ProgressBar = ({ duration, delay, action, color }) => {
   const fillStyle = {
     width: `${progress}%`,
     height: "10px",
-    backgroundColor: color || "gray",
     transition: `width ${duration}s ease-in-out`,
   };
+
+  if (color) fillStyle.backgroundColor = color;
 
   return (
     <div className="progress-bar">
