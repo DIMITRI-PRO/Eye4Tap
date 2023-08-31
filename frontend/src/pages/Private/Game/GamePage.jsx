@@ -12,7 +12,7 @@ export const GamePage = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { setShowGameMenu, isCalibrate } = useGameContext();
+  const { setShowGameMenu, isCalibrate, resumeEye } = useGameContext();
 
   return (
     <SectionContent pageName="game hive">
@@ -23,6 +23,7 @@ export const GamePage = () => {
             <Button
               name="link-game"
               onClick={() => {
+                resumeEye();
                 navigate(`${pathname}/start`);
                 setShowGameMenu(false);
               }}
@@ -37,6 +38,14 @@ export const GamePage = () => {
             onClick={() => navigate(`${pathname}/calibrate`)}
           >
             {t("pages.game.buttons.calibrate")}
+          </Button>
+        </li>
+        <li>
+          <Button
+            name="link-game"
+            onClick={() => navigate(`${pathname}/ranking`)}
+          >
+            {t("pages.game.buttons.ranking")}
           </Button>
         </li>
         <li>
