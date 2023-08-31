@@ -1,7 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, fireEvent } from "@testing-library/react";
-import { Forms } from "../../../src/components/Form/Form";
+import { Forms } from "../../../src/components/Form/index";
 
 const { Form, FormItem } = Forms;
 

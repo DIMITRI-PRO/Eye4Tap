@@ -1,6 +1,7 @@
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, fireEvent } from "@testing-library/react";
+import { X } from "../../../src/assets/FeatherIcons";
 import { Button } from "../../../src/components/NinjaComp";
 
 describe("Button component", () => {
@@ -11,11 +12,9 @@ describe("Button component", () => {
   });
 
   test("renders button with icon", () => {
-    const iconSrc = "path/to/icon.png";
-    const { getByAltText } = render(<Button icon={iconSrc} />);
-    const icon = getByAltText("icon button");
+    const { container } = render(<Button icon={<X />} />);
+    const icon = container.querySelector(".x_svg__feather.x_svg__feather-x");
     expect(icon).toBeInTheDocument();
-    expect(icon.getAttribute("src")).toBe(iconSrc);
   });
 
   test("calls onClick handler when clicked", () => {
