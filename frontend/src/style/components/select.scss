@@ -1,0 +1,43 @@
+div.ninja.select-input-type1 {
+    position: relative;
+    width: -moz-fit-content;
+    width: fit-content;
+
+    & > select.select-input {
+        transition: ease-in-out 0.2s;
+        background-color: $form-input;
+        padding: 0.25rem 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+
+        &.default {
+            color: #bdbdbd;
+        }
+
+        & > option {
+            color: $text-general;
+        }
+    }
+    & > button {
+        border: none;
+        padding: 0;
+        background-color: $form-input;
+        position: absolute;
+        z-index: 10;
+        top: 50%;
+        right: 0.1rem;
+        transform: translateY(-50%);
+
+        & > svg {
+            transition: ease-in-out 0.2s;
+            border-radius: 50%;
+            padding: 0.2rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #bdbdbd;
+            }
+        }
+    }
+}

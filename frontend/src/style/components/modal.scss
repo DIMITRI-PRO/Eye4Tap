@@ -10,10 +10,10 @@
   justify-content: center;
   animation: appear 0.4s ease-in-out;
   align-items: center;
-  
+
   &.above-nav {
     z-index: 10001;
-    top: 0
+    top: 0;
   }
 }
 

@@ -1,4 +1,7 @@
 .loader-spin {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &.spin {
         animation: spin 2s linear infinite;
     }

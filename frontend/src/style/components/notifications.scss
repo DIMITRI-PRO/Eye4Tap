@@ -1,0 +1,48 @@
+#notif-message {
+    z-index: 11000;
+    position: fixed;
+    min-height: 100px;
+    min-width: 300px;
+    background-color: #fff;
+    top: 3rem;
+    right: 2rem;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-flow: column;
+    gap: 1rem;
+
+    & > .notif-close {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    & > .notif-content {
+        display: flex;
+        gap: 1rem;
+
+        & > svg {
+            color: $icon-basic;
+
+            &.fail {
+                color: $icon-danger;
+            }
+            &.succes {
+                color: $icon-succes;
+            }
+        }
+    }
+
+    & > div.progress-bar {
+        border-radius: 0.5rem;
+        background-color: $tertiary;
+
+        & > .progress-bar-fill {
+            border-radius: 0.5rem;
+            background-color: $glitch-text-shadow;
+        }
+    }
+}

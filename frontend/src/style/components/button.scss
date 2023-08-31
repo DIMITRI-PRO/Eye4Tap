@@ -4,9 +4,12 @@
   border-radius: 0.4em;
   padding: 0.5em 1em;
   color: $text-btn-basic;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
   &:hover {
-    transition: ease-in-out 0.5s;
+    transition: ease-out 0.2s;
     background: $btn-basic-hover;
     cursor: pointer;
     color: $text-btn-basic-hover;
@@ -16,6 +19,16 @@
     color: $text-btn-basic-hover;
     border: 2px solid $btn-basic-border-hover;
     transition: none;
+  }
+
+  &:disabled {
+    background-color: transparentize($color: $btn-basic, $amount: 0.5);
+    color: transparentize($color: $text-btn-basic, $amount: 0.5);
+    border-color: transparentize($color: $btn-basic-border, $amount: 0.5);
+
+    &:hover {
+      cursor: not-allowed;
+    }
   }
 }
 
@@ -106,15 +119,66 @@
   font-size: 1.5rem;
   font-weight: 800;
   padding: 0.5rem 1rem;
-  font-family: 'Monitorica', sans-serif;
+  font-family: "Monitorica", sans-serif;
   border-radius: 0.5rem;
   position: relative;
   transition: ease-in-out 0.4s;
-  
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
   &:hover {
-      border-color: $btn-link-border-hover;
-      color: $btn-link-hover;
-      transform: scale(1.1);
-      cursor: pointer;
+    border-color: $btn-link-border-hover;
+    color: $btn-link-hover;
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+  &:disabled {
+    border-color: #fcfcfc;
+    animation: none;
+    opacity: 0.8;
+    cursor: default;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+.btn-loader-spin {
+  transition: ease-in-out 0.4s;
+  animation: spin 2s linear infinite;
+}
+
+.btn-link {
+  background-color: transparent;
+  border: 2px solid transparent;
+  border-radius: 0.4em;
+  padding: 0.5em 1em;
+  color: $text-btn-basic;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  & > svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  &:hover {
+    transition: ease-out 0.2s;
+    cursor: pointer;
+    color: $text-btn-basic-hover;
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    color: transparentize($color: $text-btn-basic, $amount: 0.5);
+
+    &:hover {
+      text-decoration: none;
+      cursor: not-allowed;
+    }
   }
 }
