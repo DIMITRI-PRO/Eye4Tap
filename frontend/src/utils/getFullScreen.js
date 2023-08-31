@@ -21,21 +21,20 @@ export const enterFullscreen = () => {
 };
 
 export const exitFullscreen = () => {
+  if (!document?.fullscreenElement) {
+    return null;
+  }
   if (document?.exitFullscreen) {
-    document.exitFullscreen();
-  } else {
-    switch (true) {
-      case document.mozCancelFullScreen !== undefined:
-        document.mozCancelFullScreen();
-        break;
-      case document.webkitExitFullscreen !== undefined:
-        document.webkitExitFullscreen();
-        break;
-      case document.msExitFullscreen !== undefined:
-        document.msExitFullscreen();
-        break;
-      default:
-        console.error("Impossible de quitter le mode plein écran.");
-    }
+    return document.exitFullscreen();
+  }
+  switch (true) {
+    case document.mozCancelFullScreen !== undefined:
+      return document.mozCancelFullScreen();
+    case document.webkitExitFullscreen !== undefined:
+      return document.webkitExitFullscreen();
+    case document.msExitFullscreen !== undefined:
+      return document.msExitFullscreen();
+    default:
+      return console.error("Impossible de quitter le mode plein écran.");
   }
 };

@@ -7,5 +7,57 @@
     }
     100% {
         transform: scale(1);
-      }
-  }
+    }
+}
+
+@keyframes plusingLow {
+    0% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeRightLinear {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes backgroundAppear {
+    0% {
+        background-color: none;
+    }
+
+    50% {
+        background-color: #fcfcfc;
+    }
+
+    100% {
+        background-color: none;
+    }
+}
+
+@keyframes fadeDown {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
