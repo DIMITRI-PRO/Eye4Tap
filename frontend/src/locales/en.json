@@ -12,12 +12,14 @@
     }
   },
   "login": {
+    "title": "Log In :",
     "label": {
       "email": "Email :",
       "password": "Password :"
     }
   },
   "register": {
+    "title": "Create an account :",
     "label": {
       "email": "Email :",
       "password": "Password :",
@@ -57,7 +59,22 @@
             }
           }
         }
+      },
+      "buttons": {
+        "start": "Start",
+        "login": "Login"
+      }
+    },
+    "game": {
+      "buttons": {
+        "calibrate": "Calibrate eye tracking",
+        "exit-game": "Exit game",
+        "start-eye": "Start calibrate",
+        "start-game": "Start"
       }
     }
+  },
+  "footer": {
+    "text-rights": "{{app}}™ version {{version}} {{name}}, {{corp}} © . All Rights Reserved."
   }
 }
