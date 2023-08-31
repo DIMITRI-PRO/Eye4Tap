@@ -2,22 +2,46 @@ import models from "../../models/index.js";
 
 const { Scores } = models;
 
-const getScores = async (req, res) => {
+const getScores = async ({ query }, res) => {
   try {
-    const [rows] = await Scores.find();
-    if (rows[0] == null) res.sendStatus(404);
-    else res.send(rows);
+    const { limit, difficulty, page } = query;
+    let filters = null;
+
+    if (difficulty) filters = { "scores.id_difficulty": difficulty };
+
+    const { datas, infos } = await Scores.find({
+      selector: "scores.*,users.pseudo,difficulty.name",
+      by: filters,
+      options: {
+        limit,
+        offSet: page * limit - limit,
+        join: ["difficulty", "users"],
+        orderBy: ["value_score"],
+        isAsc: false,
+      },
+    });
+
+    res.send({ datas, infos });
   } catch (err) {
     res.status(500);
   }
 };
 
-const getUserScores = async ({ params }, res) => {
+const getUserScores = async ({ params, payload }, res) => {
   try {
     const { id } = params;
-    const [rows] = await Scores.find({ id_user: id });
-    if (rows[0] == null) res.sendStatus(404);
-    else res.send(rows);
+    const { sub } = payload;
+    const { datas } = await Scores.find({
+      selector: "scores.*, difficulty.name",
+      by: { id_user: id || sub },
+      options: {
+        orderBy: ["value_score"],
+        isAsc: false,
+        limit: 10,
+        join: ["difficulty"],
+      },
+    });
+    res.send(datas);
   } catch (error) {
     res.status(500);
   }
@@ -36,8 +60,10 @@ const postScore = async ({ body, payload }, res) => {
 };
 
 const scoreControllers = (router) => {
-  router.get("/scores", getScores);
-  router.route("/scores/:id").get(getUserScores).post(postScore);
+  router.route("/").get(getScores);
+  router.route("/:id").get(getUserScores).post(postScore);
+
+  return router;
 };
 
 export default { scoreControllers };
