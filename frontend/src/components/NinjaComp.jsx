@@ -1,4 +1,3 @@
-import { Forms } from "./Form/Form";
 import { Button } from "./Buttons/Button";
 import { LanguageSwitch } from "./Buttons/LanguageSwitch";
 import { BasicMenu } from "./Menus/BasicMenu";
@@ -9,11 +8,16 @@ import { LoaderSpin } from "./Progress/LoaderSpin";
 import { Modal } from "./Modals/Modal";
 import { FooterBar } from "./Footer/Footer";
 import { SectionContent } from "./Layers/SectionContent";
-import { Input } from "./Form/Input";
 import { Grids } from "./Grids/Grid";
+import { Input } from "./Form/Input/Input";
+import { Select } from "./Form/Select/Select";
+import { Form } from "./Form/Form/Form";
+import { FormItem } from "./Form/FormItem/FormItem";
+import { Forms } from "./Form";
+import Tables from "./Table/Table";
 
-const { Form, FormItem } = Forms;
 const { GridZone, GridCard } = Grids;
+const { Table, TableHead, TableRow, Pagination } = Tables;
 
 export {
   Button,
@@ -33,4 +37,9 @@ export {
   Grids,
   GridZone,
   GridCard,
+  Select,
+  TableHead,
+  TableRow,
+  Table,
+  Pagination,
 };
