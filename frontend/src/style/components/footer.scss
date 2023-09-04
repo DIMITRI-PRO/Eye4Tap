@@ -1,45 +1,82 @@
 footer.footer-container {
+    text-align: center;
+    transition: ease-in-out 0.5s;
     background-color: $primary;
-    width: 100%;
+    width: 50vw;
     z-index: 5;
     -webkit-box-shadow: 0px -5px 30px 1px #000000;
     box-shadow: 0px -5px 30px 1px #0000002a;
-}
+    margin: auto;
+    min-width: 320px;
+    width: 100%;
+    padding-bottom: 1rem;
 
-.right-reserved {
-    height: 5rem;
-    margin: 5rem;
-}
+    & > div.footer-main-content {
+        width: 50%;
+        margin: auto;
 
-#footer-separator {
-    margin: 0 auto;
-    border: none;
-    width: 90%;
-    height: 0.1rem;
-    background-color: $tertiary;
-}
-
-#footer-list-url {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    list-style: none;
-
-    & > li {
-        color: $text-general;
-
-        & > a {
-            color: $text-general;
-            text-decoration: none;
+        & > ul#footer-list-url {
+            width: auto;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 0.2rem;
+            gap: 1rem;
+            list-style: none;
+            margin: 1rem 0;
+
+            & > li {
+                color: $text-general;
+
+                & > a {
+                    color: $text-general;
+                    text-decoration: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 0.2rem;
+                }
+
+                &:visited {
+                    color: $text-general;
+                }
+            }
+        }
+    }
+
+    & > hr#footer-separator {
+        margin: 1rem auto;
+        border: none;
+        width: 90%;
+        height: 0.1rem;
+        background-color: $tertiary;
+    }
+
+    & > span.right-reserved {
+        height: 5rem;
+    }
+
+    @include mobile {
+        text-align: left;
+        margin: 0;
+        padding: 0;
+
+        & > div.footer-main-content {
+            margin-left: 0;
+            & > ul#footer-list-url {
+                flex-flow: column;
+                align-items: flex-start;
+            }
         }
 
-        &:visited {
-            color: $text-general;
+        & > hr#footer-separator {
+            width: 50%;
+        }
+
+        & > span.right-reserved {
+            display: block;
+            margin: 0;
+            padding-left: 1rem;
+            height: 5rem;
         }
     }
 }
