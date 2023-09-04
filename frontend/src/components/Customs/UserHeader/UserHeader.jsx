@@ -8,15 +8,19 @@ export const UserHeader = () => {
 
   const title = (
     <Link id="user-profile-link" to="/profile">
-      {user?.picture ? (
-        <img
-          className="menu profile-picture"
-          src={user?.picture}
-          alt={user?.pseudo}
-        />
-      ) : (
-        <User width={30} height={30} />
-      )}
+      <div className="user-profile-picture">
+        {user?.picture ? (
+          <img
+            width={30}
+            height={30}
+            className="menu profile-picture"
+            src={user?.picture}
+            alt={user?.pseudo}
+          />
+        ) : (
+          <User width={30} height={30} />
+        )}
+      </div>
       {user?.pseudo}
     </Link>
   );
