@@ -12,13 +12,14 @@ export const GamePage = () => {
   const { t } = useTranslation();
   const { pathname } = useLocation();
   const navigate = useNavigate();
-  const { setShowGameMenu, isCalibrate, resumeEye } = useGameContext();
+  const { setShowGameMenu, isCalibrate, resumeEye, webgazer } =
+    useGameContext();
 
   return (
     <SectionContent pageName="game hive">
       <GlitchTitle content={t("name-app.title")} />
       <ul>
-        {isCalibrate && (
+        {!isCalibrate && (
           <li>
             <Button
               name="link-game"
@@ -52,6 +53,7 @@ export const GamePage = () => {
           <Button
             name="link-game"
             onClick={() => {
+              if (isCalibrate) webgazer.stopVideo(true);
               navigate("/");
               exitFullscreen();
             }}
