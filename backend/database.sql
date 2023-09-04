@@ -17,7 +17,8 @@ CREATE TABLE
         `value_score` int NOT NULL,
         `id_user` int NOT NULL,
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        `id_difficulty` int NOT NULL
+        `id_difficulty` int NOT NULL,
+        FOREIGN KEY (`id_user`) REFERENCES `users`(`id`) ON DELETE CASCADE
     );
 
 CREATE TABLE
@@ -25,6 +26,7 @@ CREATE TABLE
         `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
         `name` varchar(45) NOT NULL,
         `speed` int NOT NULL,
+        `time` int NOT NULL,
         `coef_point` FLOAT NOT NULL,
         `malus_point` FLOAT NOT NULL
     )

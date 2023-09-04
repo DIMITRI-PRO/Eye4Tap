@@ -1,15 +1,17 @@
 import logger from "../services/logger.js";
 import format from "../utils/formatQuery.js";
 
-const { formatQuery, formatInsertQuery, formatSorter } = format;
-
+const { formatQuery, formatInsertQuery, formatSorter, formatSelector } = format;
 const { loggingError } = logger;
-class AbstractManager {
+
+export default class AbstractManager {
   constructor({ table, schema }) {
     this.table = table;
     this.schema = schema;
     this.validateSchema = this.validateSchema.bind(this);
     this.insert = this.insert.bind(this);
+    this.find = this.find.bind(this);
+    this.setConnection = this.setConnection.bind(this);
   }
 
   insert(body) {
@@ -20,24 +22,27 @@ class AbstractManager {
     );
   }
 
-  find(findSet = "*", body = {}, sorterBy = { orderBy: [], isAsc: true }) {
-    let data = body;
-    let selector = findSet;
-    let sorters = sorterBy;
-    if (typeof findSet === "object") {
-      data = findSet;
-      selector = "*";
-      sorters = body;
-    }
-    const { query, values } = formatQuery(data);
-    const sorter = formatSorter(sorters.orderBy, sorters.isAsc);
+  async find({ selector = "", by = null, options = null }) {
+    const finalSelector =
+      selector || formatSelector(options, this.table) || "*";
+    const { query, values } = formatQuery(by);
+    const { sorter, joinner } = formatSorter({ ...options, table: this.table });
 
-    return this.connection.query(
-      `select ${selector} from ${this.table} ${
+    const [count] = await this.connection.query(
+      `select count(*) as total_count from ${this.table} ${
+        query.length ? "where " : ""
+      } ${query?.join(" and ")}`,
+      [...values]
+    );
+
+    const [datas] = await this.connection.query(
+      `select ${finalSelector} from ${this.table} ${joinner} ${
         query.length ? "where " : ""
       } ${query?.join(" and ")} ${sorter}`,
       [...values]
     );
+
+    return { datas, infos: count[0] };
   }
 
   update(body) {
@@ -70,5 +75,3 @@ class AbstractManager {
     this.connection = connection;
   }
 }
-
-export default AbstractManager;
