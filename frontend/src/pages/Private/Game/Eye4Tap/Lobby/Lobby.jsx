@@ -40,8 +40,6 @@ export const Lobby = ({
       const { data } = await requestAPI("difficulties");
 
       setDifficulties(data);
-      // if (difficulties)
-      //   console.log(result?.find((el) => el.id === difficulty.id));
     } catch (error) {
       responseMessage(error);
     }
@@ -62,6 +60,7 @@ export const Lobby = ({
       getDifficulties();
     }
   }, [id, refresh]);
+
   useEffect(() => {
     if (difficulties) {
       const findDifficulty = difficulties?.find(
@@ -74,7 +73,7 @@ export const Lobby = ({
 
   return (
     <SectionContent pageName="lobby hive">
-      <UserInfos user={user} scores={topScores} />
+      {!startTimer && <UserInfos user={user} scores={topScores} />}
       {startTimer ? (
         <CountDown
           initialTime={5}
@@ -87,9 +86,10 @@ export const Lobby = ({
       ) : (
         <h2 className="lobby-title">{t("pages.game.start.lobby.title")}</h2>
       )}
-      {difficulties?.length && (
+      {difficulties?.length && !startTimer && (
         <Select
           id="lobby-difficulty"
+          label={t(`settings.difficulty.title`)}
           initialLabel={t(`settings.difficulty.${difficulty?.name}`)}
           options={difficulties.map((item) => ({
             value: item,
@@ -103,12 +103,14 @@ export const Lobby = ({
             );
             setDifficulty(selectedDifficulty);
           }}
+          noClear
         />
       )}
       <div className="ninja lobby-menu hexa">
         <Button
           name="link-game"
           icon={<Play />}
+          disabled={!difficulty}
           onClick={() => {
             setIsLoading(true);
             setStartTimer(true);
