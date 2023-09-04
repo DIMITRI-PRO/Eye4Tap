@@ -9,6 +9,7 @@ export const Select = ({
   onChange,
   initialLabel,
   label,
+  noClear,
 }) => {
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -67,7 +68,7 @@ export const Select = ({
           </option>
         ))}
       </select>
-      {selectedOption !== "" && selectedOption !== initialLabel && (
+      {!noClear && selectedOption !== "" && selectedOption !== initialLabel && (
         <Button name="select-reset" onClick={handleResetClick} icon={<X />} />
       )}
     </div>
