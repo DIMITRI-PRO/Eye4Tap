@@ -1,12 +1,16 @@
 #ninja-modal-game-menu-container {
     justify-content: flex-start;
+    transition: ease-in-out 0.5s;
+
     & > #ninja-modal-game-menu {
         width: auto;
         box-shadow: none;
         background: center / contain no-repeat url("../../../src/style/assets/background/template_hexa_01.png");
         filter: drop-shadow(10px 10px 5px #44c6dd);
+        margin-left: 5rem;
 
         & > .body {
+            padding: 5rem;
             display: flex;
             justify-content: center;
 
@@ -18,11 +22,35 @@
                 margin: 0;
                 padding: 0;
                 list-style: none;
-                gap: 0.5rem;
+                gap: 1rem;
 
                 & > li > button {
-                    font-size: 1rem;
+                    font-size: 1.5rem;
                     background-color: #fcfcfc;
+                }
+            }
+        }
+    }
+
+    @include tablet {
+        transition: ease-in-out 0.5s;
+        justify-content: center;
+
+        & > #ninja-modal-game-menu {
+            margin-left: 0;
+        }
+    }
+    @include mobile {
+        justify-content: center;
+        align-items: flex-end;
+
+        & > #ninja-modal-game-menu {
+            margin-left: 0;
+            bottom: 2rem;
+            & > .body {
+                padding: 2rem;
+                & > ul > li > button {
+                    font-size: 1rem;
                 }
             }
         }
