@@ -5,8 +5,9 @@
   align-items: center;
   margin: 0;
   flex-direction: column;
-  min-height: calc(100vh - 2rem);
-  
+  width: auto;
+  min-height: 100vh;
+
   & main {
     margin-top: 3rem;
     flex: 1;
@@ -17,6 +18,5 @@
 
   & footer {
     flex-shrink: 0;
-    width: 100%;
   }
 }
