@@ -5,10 +5,13 @@ import {
   GridCard,
   GridZone,
   SectionContent,
+  Button,
 } from "../../../../../components/NinjaComp";
 import Customs from "../../../../../components/Customs";
 import { useGameContext } from "../../../../../context/GameContext";
 import { ComboBar } from "./ComboBar";
+import { Hexagon } from "../../../../../assets/FeatherIcons";
+import { PauseButton } from "./PauseButton";
 
 const { CountDown } = Customs;
 
@@ -20,6 +23,7 @@ export const GameZone = ({ postScore, difficulty }) => {
     areaSurface,
     handleKeyUp,
     handleKeyDown,
+    setShowGameMenu,
     pause,
   } = useGameContext();
   const [currentArea, setCurrentArea] = useState(null);
@@ -132,6 +136,7 @@ export const GameZone = ({ postScore, difficulty }) => {
 
   return (
     <SectionContent pageName="game-zone hive">
+      <PauseButton isPause={pause} onClick={() => setShowGameMenu(true)} />
       <h2 id="game-zone-score">
         {t("pages.game.start.game-zone.score", { score })}
       </h2>
@@ -172,6 +177,16 @@ export const GameZone = ({ postScore, difficulty }) => {
           );
         })}
       </GridZone>
+      <Button
+        icon={<Hexagon />}
+        disabled={pause}
+        onClick={() => {
+          if (!pause) setPress((prev) => !prev);
+        }}
+        name={`action-press ${pause ? "" : ""}`}
+      >
+        {t("pages.game.start.game-zone.press")}
+      </Button>
     </SectionContent>
   );
 };
