@@ -1,4 +1,4 @@
-// import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 import { Button } from "../../../../../components/NinjaComp";
 import { PauseCircle } from "../../../../../assets/FeatherIcons";
@@ -23,4 +23,13 @@ export const PauseButton = ({ isPause, onClick }) => {
       </>
     </Button>
   );
+};
+
+PauseButton.propTypes = {
+  isPause: PropTypes.bool,
+  onClick: PropTypes.func,
+};
+PauseButton.defaultProps = {
+  isPause: false,
+  onClick: () => {},
 };
