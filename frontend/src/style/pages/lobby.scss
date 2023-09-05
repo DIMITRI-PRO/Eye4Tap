@@ -31,6 +31,26 @@ section.ninja.section-content.lobby {
                 align-items: center;
                 gap: 1rem;
 
+                & > div.profile-picture-container {
+                    overflow: hidden;
+                    & > img {
+                        border-radius: 50%;
+                        height: 5rem;
+                        width: 5rem;
+                        border: solid #44c6dd 2px;
+                    }
+
+                    & > svg {
+                        border: solid #44c6dd 2px;
+                        height: 4rem;
+                        width: 4rem;
+                    }
+                }
+
+                @include mobile {
+                    padding: 2.5rem;
+                }
+
                 & > h3 {
                     font-family: "Maizen";
                     background-color: #fcfcfc;
@@ -92,6 +112,23 @@ section.ninja.section-content.lobby {
         & > h2 {
             animation: fadeRightLinear 1s ease-out;
         }
+
+        @include mobile {
+            & #lobby-difficulty {
+                transition: ease-in-out 0.5s;
+                z-index: 100;
+                position: absolute;
+                bottom: 25%;
+            }
+        }
+        @include tablet {
+            & #lobby-difficulty {
+                transition: ease-in-out 0.5s;
+                z-index: 100;
+                position: absolute;
+                bottom: 25%;
+            }
+        }
     }
 
     & > div.lobby-menu {
@@ -111,6 +148,14 @@ section.ninja.section-content.lobby {
             align-items: center;
             background-color: #fcfcfc;
             font-size: 1rem;
+        }
+
+        @include mobile {
+            padding: 2rem;
+            bottom: 2rem;
+            right: 0;
+            left: 0;
+            justify-content: center;
         }
     }
 }

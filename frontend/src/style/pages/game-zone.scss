@@ -2,6 +2,53 @@ section.ninja.section-content.game-zone {
     transition: ease-in-out 0.5s;
     min-height: 100vh;
 
+    & > button.btn-pause {
+        z-index: 10000;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        top: 1rem;
+        left: 1rem;
+        font-family: "Maizen";
+        font-size: 2rem;
+        position: fixed;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        color: #1f5d68;
+        font-size: 1rem;
+
+        & > svg {
+            height: 2rem;
+            width: 2rem;
+        }
+        & > span.mobile {
+            display: none;
+        }
+
+        @include mobile {
+            top: 0.2rem;
+            left: 0.2rem;
+            & > span.mobile {
+                display: block;
+                font-size: 0.8rem;
+            }
+            & > span.desktop {
+                display: none;
+            }
+        }
+        @include tablet {
+            & > span.mobile {
+                display: block;
+                font-size: 1rem;
+            }
+            & > span.desktop {
+                display: none;
+            }
+        }
+    }
+
     & > #area-game {
         background-color: #fcfcfc;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill-opacity='0.05' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
@@ -53,6 +100,60 @@ section.ninja.section-content.game-zone {
             font-size: 2rem;
             letter-spacing: 0.5rem;
             font-family: "Maizen", sans-serif;
+        }
+    }
+
+    & > button.ninja.btn-action-press {
+        display: none;
+        position: fixed;
+        bottom: 2rem;
+        z-index: 10000;
+        font-size: 1.2rem;
+        font-family: "Maizen", sans-serif;
+        background-color: transparent;
+        padding: 3rem;
+        border: none;
+        border: solid red 2px;
+
+        & > svg {
+            left: 50%;
+            bottom: 50%;
+            transform: translate(-50%, 50%);
+            width: auto;
+            height: 100%;
+            position: absolute;
+            color: #3cd0c4;
+        }
+
+        &:active {
+            transition: ease-in-out 0.1s;
+            color: #a7a7a7;
+            font-size: 1rem;
+            & > svg {
+                transition: ease-in-out 0.1s;
+                height: 120%;
+                color: #2dffed;
+            }
+        }
+
+        @include tablet {
+            display: block;
+        }
+        @include mobile {
+            display: block;
+        }
+    }
+
+    @include mobile {
+        & > h2#game-zone-score {
+            padding: 4rem;
+        }
+        & > div#count-down-game {
+            width: 150px;
+
+            & > h1 {
+                font-size: 1.5rem;
+            }
         }
     }
 }

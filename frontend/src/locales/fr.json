@@ -96,7 +96,10 @@
       },
       "start": {
         "game-zone": {
-          "score": "Score : {{score}}"
+          "score": "Score : {{score}}",
+          "pause-d": "Pause : Click/Echap",
+          "pause-m": "Pause : Touch",
+          "press": "PRESS"
         },
         "lobby": {
           "title": "Prépare toi",
@@ -128,6 +131,13 @@
         "start": "Commencer",
         "back": "Retour"
       }
+    },
+    "not-found": {
+      "title": "erreur 404",
+      "sub-title": "La page demandé n'a pas pu être trouvé.",
+      "buttons": {
+        "home": "Retour à l'accueil"
+      }
     }
   },
   "footer": {
@@ -140,9 +150,11 @@
   },
   "settings": {
     "difficulty": {
+      "title": "Difficulté : ",
       "HARD": "DIFFICILE",
       "NORMAL": "NORMAL",
       "EASY": "FACILE",
+      "DEVELOPPER": "DEVELOPPEUR",
       "undefined": "Sélectionner la difficulté..."
     },
     "pagination": {

@@ -8,7 +8,7 @@ section.section-content {
     width: 100%;
 
     &.full-screen {
-        background-color: $dark;
+        background-color: #fcfcfc;
         position: fixed;
         padding: 0;
         top: 0;
@@ -17,7 +17,6 @@ section.section-content {
         bottom: 0;
         z-index: 10000;
     }
-
 }
 
 div.full-screen.container {

@@ -15,6 +15,7 @@ export const Eye4Tap = () => {
   const { id } = authMemo;
 
   const [displayGame, setDisplayGame] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const [difficulty, setDifficulty] = useState();
   const storedDifficulty = JSON.parse(localStorage.getItem("difficulty"));
 
@@ -30,6 +31,7 @@ export const Eye4Tap = () => {
     };
     try {
       setDisplayGame(false);
+      setRefresh(!refresh);
       const response = await requestAPI("post", `scores/${id}`, body);
       messageStatus(
         response,
@@ -51,7 +53,7 @@ export const Eye4Tap = () => {
       ) : (
         <Lobby
           setDisplayGame={setDisplayGame}
-          refresh={displayGame}
+          refresh={refresh}
           setDifficulty={setDifficulty}
           difficulty={difficulty}
         />

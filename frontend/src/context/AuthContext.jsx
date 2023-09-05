@@ -20,19 +20,20 @@ export const AuthContextProvider = ({ children }) => {
   const { responseMessage } = useMessageContext();
 
   const location = useLocation();
+
   const [isLogin, setIsLogin] = useState(false);
   const [cookie, setCookie] = useState();
   const [user, setUser] = useState(null);
   const [refreshUser, setRefreshUser] = useState(false);
   const [id, setId] = useState(null);
-
   const [displayFooter, setDisplayFooter] = useState(true);
 
   const getCookie = (name) => {
     const cookieValue = document.cookie.match(
       `(^|;)\\s*${name}\\s*=\\s*([^;]+)`
     );
-    return cookieValue ? cookieValue.pop() : "";
+    if (cookieValue) return cookieValue.pop();
+    return "";
   };
 
   const deleteCookie = () => {
@@ -114,8 +115,13 @@ export const AuthContextProvider = ({ children }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
     setCookie(getCookie(COOKIE));
+
     if (cookie) setIsLogin(true);
-    else setIsLogin(false);
+    else if (!cookie) {
+      setIsLogin(false);
+      setUser(null);
+    }
+
     if (location.pathname.split("/").includes("game")) setDisplayFooter(false);
     else setDisplayFooter(true);
   }, [location, cookie]);

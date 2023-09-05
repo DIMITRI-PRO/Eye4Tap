@@ -5,7 +5,19 @@ export const columns = [
   {
     label: "picture",
     hidden: true,
-    render: () => <User />,
+    render: (data) => (
+      <div className="profile-picture-container">
+        {data?.picture ? (
+          <img
+            className="ninja profile-picture"
+            src={data?.picture}
+            alt="profile"
+          />
+        ) : (
+          <User />
+        )}
+      </div>
+    ),
     align: "right",
     width: "20%",
   },

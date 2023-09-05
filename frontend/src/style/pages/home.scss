@@ -1,6 +1,6 @@
 section.ninja.section-content.home {
-  min-height: 80vh;
   height: auto;
+  min-height: calc(100vh - 3rem);
 
   &.hive {
     position: relative;
@@ -14,33 +14,16 @@ section.ninja.section-content.home {
     & > .wrapper > h1 {
       transition: ease-in-out 0.5s;
       font-size: 4rem;
-      @include tablet {
-        font-size: 2rem;
-      }
-      @include mobile {
-        font-size: 1.5rem;
-      }
     }
+
     & > .wrapper > p {
       transition: ease-in-out 0.5s;
       font-size: 2rem;
-      @include tablet {
-        font-size: 1rem;
-      }
-      @include mobile {
-        font-size: 0.5rem;
-      }
     }
 
     & > button {
       background-color: #fcfcfc;
       font-size: 1.2rem;
-      @include tablet {
-        font-size: 1rem;
-      }
-      @include mobile {
-        font-size: 0.8rem;
-      }
     }
 
     & > div.modal-default-background {
@@ -52,26 +35,69 @@ section.ninja.section-content.home {
         width: 50%;
         font-size: 1rem;
 
-        @include tablet {
-          width: 80%;
-          font-size: 0.8rem;
-        }
-        @include mobile {
-          width: 90%;
-          font-size: 0.5rem;
-        }
-
         & > div.body {
           height: 20rem;
           overflow-y: scroll;
           & > article > h1 {
             color: $text-danger;
             font-size: 2rem;
-            @include tablet {
+          }
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    &.hive {
+      & > .wrapper > h1 {
+        font-size: 3rem;
+      }
+
+      & > .wrapper > p {
+        font-size: 1.5rem;
+      }
+
+      & > button {
+        font-size: 1rem;
+      }
+
+      & > div.modal-default-background {
+        & > #ninja-modal-home {
+          width: 80%;
+          font-size: 1.1rem;
+
+          & > div.body {
+            & > article > h1 {
               font-size: 2rem;
             }
-            @include mobile {
-              font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    &.hive {
+      & > .wrapper > h1 {
+        font-size: 1.5rem;
+      }
+
+      & > .wrapper > p {
+        font-size: 1rem;
+      }
+
+      & > button {
+        font-size: 0.8rem;
+      }
+
+      & > div.modal-default-background {
+        & > #ninja-modal-home {
+          width: 90%;
+          font-size: 0.9rem;
+
+          & > div.body {
+            & > article > h1 {
+              font-size: 1.5rem;
             }
           }
         }

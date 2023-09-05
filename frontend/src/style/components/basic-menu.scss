@@ -8,16 +8,68 @@
   top: 0;
   left: 0;
   right: 0;
-}
 
-.nav-basic {
-  height: 2.5rem; // nav bar height settings
-  display: flex;
-  align-items: center;
-  width: 100%;
+  & > .nav-basic {
+    height: 2.5rem; // nav bar height settings
+    display: flex;
+    align-items: center;
+    width: 100%;
 
-  @include mobile {
-    justify-content: space-between;
+    & > .nav-ul {
+      display: flex;
+      list-style: none;
+
+      @include mobile {
+        display: none;
+      }
+
+      & li {
+        text-align: center;
+
+        & > .nav-link {
+          color: $text-btn-basic;
+          background-color: $btn-basic;
+          width: 100%;
+          border-radius: 0.2em;
+          border: 2px solid $btn-basic-border;
+          padding: 0.3em 0.5em;
+          text-decoration: none;
+
+          &:hover {
+            background: $btn-basic-hover;
+            color: $text-btn-basic-hover;
+            cursor: pointer;
+          }
+
+          &:active {
+            background-color: $btn-basic-hover;
+            color: $text-btn-basic-hover;
+            border: 2px solid $btn-basic-border-hover;
+          }
+        }
+
+        &:hover {
+          transition: ease-in-out 0.5s;
+          transform: scale(1.1, 1.2);
+        }
+
+        & > .nav-link:visited {
+          color: inherit;
+        }
+      }
+    }
+
+    & > .nav-children {
+      display: flex;
+
+      @include mobile {
+        display: none;
+      }
+    }
+
+    @include mobile {
+      justify-content: space-between;
+    }
   }
 }
 
@@ -27,58 +79,6 @@
 
   &:hover {
     color: $icon-home-hover;
-  }
-}
-
-.nav-ul {
-  display: flex;
-  list-style: none;
-
-  @include mobile {
-    display: none;
-  }
-
-  & li {
-    text-align: center;
-
-    & > .nav-link {
-      color: $text-btn-basic;
-      background-color: $btn-basic;
-      width: 100%;
-      border-radius: 0.2em;
-      border: 2px solid $btn-basic-border;
-      padding: 0.3em 0.5em;
-      text-decoration: none;
-
-      &:hover {
-        background: $btn-basic-hover;
-        color: $text-btn-basic-hover;
-        cursor: pointer;
-      }
-
-      &:active {
-        background-color: $btn-basic-hover;
-        color: $text-btn-basic-hover;
-        border: 2px solid $btn-basic-border-hover;
-      }
-    }
-
-    &:hover {
-      transition: ease-in-out 0.5s;
-      transform: scale(1.1, 1.2);
-    }
-
-    & > .nav-link:visited {
-      color: inherit;
-    }
-  }
-}
-
-.nav-children {
-  display: flex;
-
-  @include mobile {
-    display: none;
   }
 }
 
@@ -126,8 +126,8 @@
   }
 
   & > img {
-    border: none;
     border-radius: 50%;
+    border: none;
     padding: 0.2rem;
     margin: 2rem 2rem 0;
   }
@@ -147,6 +147,10 @@
   & a {
     text-decoration: none;
 
+    & > svg {
+      margin-right: 0.5rem;
+    }
+
     &:visited {
       color: $text-general;
     }
@@ -154,16 +158,12 @@
 }
 
 .user_svg__feather.user_svg__feather-user {
-  fill: $primary;
-  stroke: $primary;
+  fill: #b8b8b8;
+  stroke: #b8b8b8;
   border: solid $tertiary 0.1rem;
   padding: 0.2rem;
-  background-color: $tertiary;
+  background-color: #8d8d8d;
   border-radius: 50%;
-
-  &:hover {
-    background-color: $tertiary;
-  }
 }
 
 #user-profile-link {
@@ -176,7 +176,20 @@
   text-transform: uppercase;
   padding: 0.2rem;
 
-  &:hover {
+  & > .user-profile-picture {
+    height: 2rem;
+    border: solid red 2px;
+    overflow: hidden;
+    border-radius: 50%;
+
+    & > img,
+    svg {
+      width: auto;
+      height: 100%;
+    }
+  }
+
+  & > &:hover {
     text-decoration: underline;
   }
 
@@ -217,6 +230,9 @@
     }
 
     @include tablet {
+      font-size: 1rem;
+    }
+    @include mobile {
       font-size: 0.8rem;
     }
   }

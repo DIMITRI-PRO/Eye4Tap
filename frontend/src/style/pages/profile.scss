@@ -15,6 +15,49 @@ section.ninja.section-content.profile {
         -webkit-box-shadow: 5px 5px 20px 0px #000000cc;
         box-shadow: 5px 5px 20px 0px #000000cc;
 
+        & > div.formitem-profile-picture {
+            position: relative;
+            background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & div.profile-picture-container {
+                padding: 1rem;
+                overflow: hidden;
+                height: 10rem;
+                & > svg {
+                    height: 100%;
+                    width: 100%;
+                }
+                & > img {
+                    border-radius: 50%;
+                    height: 100%;
+                    width: auto;
+                }
+            }
+
+            & div.profile-picture-actions {
+                position: absolute;
+                bottom: 0.5rem;
+                width: 5rem;
+                display: flex;
+                justify-content: space-between;
+
+                & > button {
+                    height: 2rem;
+                    width: 2rem;
+                    background-color: #fcfcfc;
+                    padding: 0.5rem;
+
+                    &:hover {
+                        cursor: pointer;
+                        background-color: #c0c0c0;
+                    }
+                }
+            }
+        }
+
         & > div {
             background-color: transparent;
         }

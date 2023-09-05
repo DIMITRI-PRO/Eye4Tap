@@ -10,7 +10,17 @@ export const UserInfos = ({ user, scores }) => {
   return (
     <div id="user-infos">
       <div className="user-infos-header">
-        <User width="4rem" height="4rem" />
+        <div className="profile-picture-container">
+          {user?.picture ? (
+            <img
+              className="ninja profile-picture"
+              src={user?.picture}
+              alt="profile"
+            />
+          ) : (
+            <User />
+          )}
+        </div>
         <h3 className="user-infos-pseudo">{user?.pseudo || "Anonymous"}</h3>
       </div>
       <div className="user-infos-hover-text">

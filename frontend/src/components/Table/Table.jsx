@@ -53,6 +53,10 @@ const Table = ({
 
 Table.propTypes = {
   id: PropTypes.string,
+  ref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
   datas: PropTypes.arrayOf({}),
   isLoading: PropTypes.bool,
   headers: PropTypes.arrayOf(
@@ -77,6 +81,7 @@ Table.propTypes = {
 };
 Table.defaultProps = {
   id: null,
+  ref: null,
   isLoading: false,
   datas: null,
   children: null,

@@ -42,7 +42,7 @@ export const Ranking = () => {
       <div className="ranking-list header">
         <Button
           name="link"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/game")}
           icon={<ArrowLeftCircle />}
         >
           Retour au menu

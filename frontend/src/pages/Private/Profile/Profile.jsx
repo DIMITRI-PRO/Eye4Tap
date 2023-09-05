@@ -8,6 +8,7 @@ import {
   Button,
   SectionContent,
 } from "../../../components/NinjaComp";
+import { User, RefreshCw, X } from "../../../assets/FeatherIcons";
 
 export const Profile = () => {
   const { t } = useTranslation();
@@ -16,15 +17,33 @@ export const Profile = () => {
   const { id, user } = authMemo;
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isPictureLoading, setIsPictureLoading] = useState(false);
+  const [displayDefault, setDisplayDefault] = useState(false);
+  const [profilePicture, setProfilePicture] = useState("");
+
+  const getAnimeApi = async () => {
+    setIsPictureLoading(true);
+    try {
+      const { data } = await requestAPI(`anime-api/`);
+      setProfilePicture(data[0]?.image);
+      setDisplayDefault(false);
+    } catch (e) {
+      responseMessage(e);
+    }
+    setIsPictureLoading(false);
+  };
 
   const updateUser = async (body) => {
     setIsLoading(true);
     try {
-      const data = await requestAPI("patch", `users/${id}`, body);
+      const updatedData = body;
+      updatedData.picture = profilePicture;
+      const data = await requestAPI("patch", `users/${id}`, updatedData);
 
       setUser((prev) => {
-        return { ...prev, ...body };
+        return { ...prev, ...updatedData };
       });
+
       messageStatus(data);
     } catch (e) {
       responseMessage(e);
@@ -37,6 +56,35 @@ export const Profile = () => {
       <SectionContent pageName="profile">
         <h1>{t("profile.title")}</h1>
         <Form onSubmit={updateUser} initialValues={user}>
+          <div className="formitem-profile-picture">
+            <div className="profile-picture-container">
+              {(profilePicture || user?.picture) && !displayDefault ? (
+                <img
+                  className="ninja profile-picture"
+                  src={profilePicture || user.picture}
+                  alt="profile"
+                />
+              ) : (
+                <User />
+              )}
+            </div>
+            <div className="profile-picture-actions">
+              <Button
+                name="circle"
+                icon={<X />}
+                onClick={() => {
+                  setProfilePicture(null);
+                  setDisplayDefault(true);
+                }}
+              />
+              <Button
+                name="circle"
+                icon={<RefreshCw />}
+                isLoading={isPictureLoading}
+                onClick={() => getAnimeApi()}
+              />
+            </div>
+          </div>
           <FormItem
             label={t("register.label.lastname")}
             type="text"

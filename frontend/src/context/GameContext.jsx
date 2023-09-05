@@ -3,10 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { SectionContent } from "../components/NinjaComp";
 
-const config = {
-  isReady: true,
-};
-
 const { webgazer } = window;
 
 export const GameContext = createContext({});
@@ -19,7 +15,7 @@ export const GameContextProvider = ({ children }) => {
   const [showGameMenu, setShowGameMenu] = useState(false);
   const [pause, setPause] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [isCalibrate, setIsCalibrate] = useState(config.isReady);
+  const [isCalibrate, setIsCalibrate] = useState(false);
   const [position, setPosition] = useState({ x: null, y: null });
 
   const handleTabEvent = (e) => e.preventDefault();
@@ -108,6 +104,7 @@ export const GameContextProvider = ({ children }) => {
         handleKeyUp,
         isCalibrate,
         setIsCalibrate,
+        webgazer,
       }}
     >
       <SectionContent fullScreen>{children}</SectionContent>

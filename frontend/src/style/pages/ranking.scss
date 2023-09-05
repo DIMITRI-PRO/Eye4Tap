@@ -5,10 +5,12 @@ section.ninja.section-content.ranking {
     min-height: 100vh;
     position: relative;
     justify-content: flex-start;
+    transition: ease-in-out 0.5s;
 
     & > div.ranking-list.header {
+        transition: ease-in-out 0.5s;
         margin-top: 10rem;
-        min-width: 40rem;
+        width: 40rem;
         position: sticky;
         top: 0;
         background-color: #fcfcfc;
@@ -28,6 +30,22 @@ section.ninja.section-content.ranking {
         padding: 5rem 1rem;
         border-radius: 0.8rem;
 
+        & div.profile-picture-container {
+            overflow: hidden;
+            & > img {
+                border-radius: 50%;
+                height: 3.5rem;
+                width: 3.5rem;
+                border: none;
+            }
+
+            & > svg {
+                border: none;
+                height: 3rem;
+                width: 3rem;
+            }
+        }
+
         & > .pagination-basic > .pagination-basic-numerotation {
             & > button.disabled {
                 color: rgb(104, 104, 104);
@@ -35,6 +53,45 @@ section.ninja.section-content.ranking {
                 cursor: default;
                 &:hover {
                     color: $text-general;
+                }
+            }
+        }
+    }
+    @include mobile {
+        & > div.ranking-list.header {
+            padding: 1rem;
+            margin-top: 2rem;
+            width: 90%;
+            border-radius: 1rem;
+
+            & > h1 {
+                font-size: 1rem;
+            }
+
+            & > div#lobby-difficulty {
+                margin: auto;
+            }
+        }
+
+        & > .datatable {
+            padding: 0;
+            & > #pagination-ranking {
+                width: 90%;
+                align-items: flex-start;
+                gap: 0.5rem;
+                & > .btn-link {
+                    font-size: 0.6rem;
+                    & > svg {
+                        width: 0.8rem;
+                        height: 0.8rem;
+                    }
+                }
+                & > .pagination-basic-numerotation {
+                    flex-wrap: wrap;
+
+                    & > button {
+                        font-size: 0.6rem;
+                    }
                 }
             }
         }
