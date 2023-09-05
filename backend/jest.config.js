@@ -1,6 +1,8 @@
 export default {
   testEnvironment: "node",
-  transform: {},
+  transform: {
+    "^.+\\.js$": "babel-jest",
+  },
   moduleFileExtensions: ["js", "json", "node"],
   testMatch: ["**/__tests__/**/*.test.(js|jsx|ts|tsx)"],
   globals: {
