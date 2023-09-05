@@ -1,7 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# Vérifie le linting et les tests unitaires pour tous les fichiers sauf "chemin/vers/fichier_ignoré.js"
 if git diff --name-only --cached | grep -v "frontend/src/utils/webgazer/webgazer.js" | xargs -r -d '\n' npm run lint && npm run test:unit; then
   exit 0
 else
