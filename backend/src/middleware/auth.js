@@ -22,20 +22,22 @@ const hashPassword = async (req, res, next) => {
 const verifyPassword = async (req, res) => {
   try {
     const { user, body } = req;
-    const [{ id, password, pseudo, email, firstname, lastname, picture }] =
-      user;
 
-    const isVerified = await verify(password, body.password);
+    const isVerified = await verify(user.password, body.password);
 
     if (isVerified) {
-      const token = sign({ sub: id }, process.env.JWT_SECRET, {
-        expiresIn: `${process.env.EXPIRE_TIME}s`,
-      });
+      const token = sign(
+        { sub: user.id, role: user?.id_role || 0 },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: `${process.env.EXPIRE_TIME}s`,
+        }
+      );
       delete user.password;
       res.cookie(process.env.NAME_COOKIE, token, {
         maxAge: process.env.EXPIRE_TIME * 1000,
       });
-      res.status(200).json({ pseudo, email, firstname, lastname, picture });
+      res.status(200).json(user);
     } else res.sendStatus(401);
   } catch (error) {
     res.status(500);
@@ -44,23 +46,26 @@ const verifyPassword = async (req, res) => {
 
 const verifyToken = (req, res, next) => {
   try {
-    if (process.env.ACTIVE_TOKEN === "false") {
-      next();
-    } else {
+    if (process.env.ACTIVE_TOKEN === "false") next();
+    else {
       const authorizationHeader = req.get("Authorization");
-      if (authorizationHeader == null) {
+      if (authorizationHeader == null)
         throw new Error("Authorization header is missing");
-      }
+
       const [type, token] = authorizationHeader.split(" ");
-      if (type !== "Bearer") {
+      if (type !== "Bearer")
         throw new Error("Authorization header has not the 'Bearer' type");
-      }
-      req.payload = verifyJWT(token, process.env.JWT_SECRET);
-      next();
+
+      const payload = verifyJWT(token, process.env.JWT_SECRET);
+
+      if (payload?.role !== undefined) {
+        req.payload = payload;
+        next();
+      } else throw new Error("Missing Role token.");
     }
   } catch (err) {
     console.error("Erreur de verification Token:", err);
-    res.location(`/login`).clearCookie(process.env.NAME_COOKIE).sendStatus(401);
+    res.clearCookie(process.env.NAME_COOKIE).sendStatus(401);
   }
 };
 
