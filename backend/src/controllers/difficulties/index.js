@@ -1,6 +1,7 @@
 import models from "../../models/index.js";
 
 const { Difficulties } = models;
+const { validateSchema } = Difficulties;
 
 const getDifficulties = async (req, res) => {
   try {
@@ -21,8 +22,22 @@ const postDifficulty = async ({ body }, res) => {
   }
 };
 
+const deleteDifficulty = async ({ params }, res) => {
+  try {
+    const { id } = params;
+    const [result] = await Difficulties.delete(id);
+
+    if (result.affectedRows === 0) res.sendStatus(404);
+    else res.send("Item successfully deleted from your database").status(204);
+  } catch (err) {
+    res.status(500);
+  }
+};
+
 const difficultyControllers = (router) => {
-  router.route("/").get(getDifficulties).post(postDifficulty);
+  router.route("/").get(getDifficulties).post(validateSchema, postDifficulty);
+
+  router.route("/:id").delete(deleteDifficulty);
 
   return router;
 };
