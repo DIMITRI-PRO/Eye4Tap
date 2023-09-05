@@ -70,7 +70,7 @@ export const Profile = () => {
             </div>
             <div className="profile-picture-actions">
               <Button
-                name="circle"
+                name="circle remove"
                 icon={<X />}
                 onClick={() => {
                   setProfilePicture(null);
@@ -78,7 +78,7 @@ export const Profile = () => {
                 }}
               />
               <Button
-                name="circle"
+                name="circle reload"
                 icon={<RefreshCw />}
                 isLoading={isPictureLoading}
                 onClick={() => getAnimeApi()}
