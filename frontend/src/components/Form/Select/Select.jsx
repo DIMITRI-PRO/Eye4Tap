@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 import { Button } from "../../Buttons/Button";
 import { X } from "../../../assets/FeatherIcons";
 
@@ -73,4 +74,23 @@ export const Select = ({
       )}
     </div>
   );
+};
+
+Select.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  options: PropTypes.arrayOf({}),
+  onChange: PropTypes.func,
+  initialLabel: PropTypes.string,
+  label: PropTypes.string,
+  noClear: PropTypes.bool,
+};
+Select.defaultProps = {
+  id: null,
+  name: null,
+  options: [],
+  onChange: null,
+  initialLabel: null,
+  label: null,
+  noClear: false,
 };
