@@ -43,7 +43,7 @@ export const GameMenuModal = ({ displayGame, setDisplayGame }) => {
             <Button
               name="link-game"
               onClick={() => {
-                pauseEye();
+                resumeEye();
                 setPause(false);
                 setShowGameMenu(false);
                 setDisplayGame(false);
@@ -57,6 +57,7 @@ export const GameMenuModal = ({ displayGame, setDisplayGame }) => {
           <Button
             name="link-game"
             onClick={() => {
+              pauseEye();
               navigate("/game");
             }}
           >
