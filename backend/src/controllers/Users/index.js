@@ -5,7 +5,7 @@ const { Users } = models;
 const getUsers = async (req, res) => {
   try {
     const { datas } = await Users.find({
-      selector: "id,lastname,firstname,email,pseudo,picture",
+      selector: "id,lastname,firstname,email,pseudo,picture,id_role",
     });
     res.send(datas);
   } catch (err) {
@@ -17,8 +17,13 @@ const getUser = async ({ payload }, res) => {
   try {
     const { sub } = payload;
     const { datas } = await Users.find({
-      selector: "lastname,firstname,email,pseudo,picture",
-      by: { id: sub },
+      selector:
+        "users.id,users.lastname,users.firstname,users.email,users.pseudo,users.picture,users.id_role,roles.*",
+      by: { "users.id": sub },
+      options: {
+        join: ["roles"],
+        type: "left",
+      },
     });
     if (datas[0] == null) res.sendStatus(404);
     else res.send(datas[0]);
@@ -29,9 +34,18 @@ const getUser = async ({ payload }, res) => {
 
 const login = async (req, res, next) => {
   try {
-    const { datas } = await Users.find({ by: { email: req.body.email } });
+    const { datas } = await Users.find({
+      selector: "users.*,roles.name,roles.description",
+      by: { "users.email": req.body.email },
+      options: {
+        join: ["roles"],
+        type: "left",
+      },
+    });
+
     if (datas[0]) {
-      req.user = datas;
+      const user = datas[0];
+      req.user = user;
       next();
     } else res.status(404).send("no existing account...");
   } catch (err) {
@@ -76,7 +90,7 @@ const deleteUser = async ({ payload }, res) => {
     const [result] = await Users.delete(id);
 
     if (result.affectedRows === 0) res.sendStatus(404);
-    else res.status(204).send("Item successfully deleted from your database");
+    else res.send("Item successfully deleted from your database").status(204);
   } catch (err) {
     res.status(500);
   }

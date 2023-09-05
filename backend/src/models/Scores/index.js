@@ -6,9 +6,9 @@ class Scores extends AbstractManager {
     super({
       table: "scores",
       schema: Joi.object({
-        value_score: Joi.number().max(45).required(),
-        id_user: Joi.string().max(45).required(),
-        id_difficulty: Joi.number().max(45).required(),
+        value_score: Joi.number().max(999).required(),
+        id_user: Joi.number().required(),
+        id_difficulty: Joi.number().required(),
       }),
     });
   }

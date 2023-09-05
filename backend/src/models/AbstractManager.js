@@ -11,6 +11,7 @@ export default class AbstractManager {
     this.validateSchema = this.validateSchema.bind(this);
     this.insert = this.insert.bind(this);
     this.find = this.find.bind(this);
+    this.delete = this.delete.bind(this);
     this.setConnection = this.setConnection.bind(this);
   }
 
@@ -35,6 +36,13 @@ export default class AbstractManager {
       [...values]
     );
 
+    // console.log(
+    //   `select ${finalSelector} from ${this.table} ${joinner} ${
+    //     query.length ? "where " : ""
+    //   } ${query?.join(" and ")} ${sorter}`,
+    //   [...values]
+    // );
+
     const [datas] = await this.connection.query(
       `select ${finalSelector} from ${this.table} ${joinner} ${
         query.length ? "where " : ""
@@ -46,10 +54,11 @@ export default class AbstractManager {
   }
 
   update(body) {
-    const { query, values } = formatQuery(body);
+    const { id } = body;
+    const { query, values } = formatQuery(body, true);
     return this.connection.query(
       `update ${this.table} set ${query} where id = ?`,
-      [...values, body.id]
+      [...values, id]
     );
   }
 
