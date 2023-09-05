@@ -1,11 +1,13 @@
 const dataJoin = (array = []) => `(${array.join(", ")})`;
 
-const formatQuery = (data) => {
+const formatQuery = (data, removeId = false) => {
   const query = [];
   const values = [];
+  const result = data;
+  if (removeId) delete result.id;
 
-  if (data) {
-    Object.entries(data).forEach(([key, value]) => {
+  if (result) {
+    Object.entries(result).forEach(([key, value]) => {
       query.push(`${key} = ?`);
       values.push(value);
     });
@@ -37,6 +39,7 @@ const formatSorter = ({
   offSet = null,
   join = null,
   table = "",
+  type = "",
 }) => {
   let sorter = orderBy.length
     ? `order by ${orderBy.join(",")} ${isAsc ? "" : "desc "}`
@@ -47,7 +50,7 @@ const formatSorter = ({
   if (join && table) {
     joinner = join
       .map((j) => {
-        return ` join ${j} on ${table}.id_${
+        return `${type} join ${j} on ${table}.id_${
           j[j.length - 1] === "s" ? j.slice(0, -1) : j
         } = ${j}.id `;
       })
