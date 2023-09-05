@@ -1,6 +1,7 @@
 import models from "../../models/index.js";
 
 const { Scores } = models;
+const { validateSchema } = Scores;
 
 const getScores = async ({ query }, res) => {
   try {
@@ -10,7 +11,7 @@ const getScores = async ({ query }, res) => {
     if (difficulty) filters = { "scores.id_difficulty": difficulty };
 
     const { datas, infos } = await Scores.find({
-      selector: "scores.*,users.pseudo,difficulty.name",
+      selector: "scores.*,users.pseudo,users.picture,difficulty.name",
       by: filters,
       options: {
         limit,
@@ -61,7 +62,7 @@ const postScore = async ({ body, payload }, res) => {
 
 const scoreControllers = (router) => {
   router.route("/").get(getScores);
-  router.route("/:id").get(getUserScores).post(postScore);
+  router.route("/:id").get(getUserScores).post(validateSchema, postScore);
 
   return router;
 };
