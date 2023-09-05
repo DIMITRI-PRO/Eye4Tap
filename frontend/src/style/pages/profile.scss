@@ -49,6 +49,17 @@ section.ninja.section-content.profile {
                     width: 2rem;
                     background-color: #fcfcfc;
                     padding: 0.5rem;
+                    border: solid lightblue 1px;
+
+                    &.remove {
+                        color: #fcfcfc;
+                        border-color: $btn-danger-hover;
+                        background-color: $btn-danger;
+
+                        &:hover {
+                            background-color: $btn-danger-hover;
+                        }
+                    }
 
                     &:hover {
                         cursor: pointer;

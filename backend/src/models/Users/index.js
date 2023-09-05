@@ -12,6 +12,7 @@ class Users extends AbstractManager {
         password: Joi.string().max(254).required(),
         pseudo: Joi.string().max(45).required(),
         picture: Joi.string().max(254).allow(null),
+        id_role: Joi.number().allow(null),
       }),
     });
   }

@@ -7,7 +7,7 @@ import { Button, Modal } from "../../../../components/NinjaComp";
 
 export const FinishCalibrateModal = ({ isFinish, reStart }) => {
   const { t } = useTranslation();
-  const { setupEye, pauseEye, setIsCalibrate } = useGameContext();
+  const { setupEye, pauseEye, setIsCalibrate, endEye } = useGameContext();
   const navigate = useNavigate();
   return (
     <Modal
@@ -26,6 +26,7 @@ export const FinishCalibrateModal = ({ isFinish, reStart }) => {
           onClick={() => {
             reStart();
             setIsCalibrate(false);
+            endEye();
             setupEye();
           }}
         >

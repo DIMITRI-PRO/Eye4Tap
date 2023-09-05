@@ -77,7 +77,7 @@ const postUser = async ({ body }, res) => {
     if (datas[0])
       res.status(409).json({ message: "Item already taken", email });
 
-    await Users.insert(body);
+    await Users.insert({ ...body, id_role: 0 });
     res.status(201).json({ message: "Item successfully created" });
   } catch (err) {
     res.status(500);

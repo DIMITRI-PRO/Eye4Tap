@@ -27,7 +27,7 @@ export const Lobby = ({
   const { authMemo, requestAPI } = useAuthContext();
   const { user, id } = authMemo;
   const { responseMessage } = useMessageContext();
-  const { resumeEye } = useGameContext();
+  const { pauseEye } = useGameContext();
   const navigate = useNavigate();
 
   const [startTimer, setStartTimer] = useState(false);
@@ -114,7 +114,6 @@ export const Lobby = ({
           onClick={() => {
             setIsLoading(true);
             setStartTimer(true);
-            resumeEye();
           }}
           isLoading={isLoading}
         >
@@ -125,6 +124,7 @@ export const Lobby = ({
           name="link-game"
           icon={<CornerDownLeft />}
           onClick={() => {
+            pauseEye();
             navigate("/game");
           }}
         >

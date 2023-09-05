@@ -103,7 +103,7 @@
   padding: 0rem;
 
   & > button.btn-borderless.danger {
-    margin: auto;
+    margin: 0.5rem;
     cursor: pointer;
   }
 }
@@ -177,15 +177,19 @@
   padding: 0.2rem;
 
   & > .user-profile-picture {
+    width: 2rem;
     height: 2rem;
-    border: solid red 2px;
     overflow: hidden;
     border-radius: 50%;
 
-    & > img,
-    svg {
-      width: auto;
+    & > svg {
+      width: 1.4rem;
+      height: 1.4rem;
+    }
+    & > img {
+      width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 
