@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import PropTypes from "prop-types";
 import { Button } from "../Buttons/Button";
@@ -22,26 +22,37 @@ export const Modal = ({
 }) => {
   const { t } = useTranslation();
   const [isDisplay, setIsDisplay] = useState(initialDisplay);
-  if ((isOpen || isDisplay) && onOpen) onOpen?.();
+
+  useEffect(() => {
+    const handleDocumentClick = (event) => {
+      const modal = document.getElementById(`ninja-modal-${modalKey}`);
+      if (isDisplay && !modal?.contains(event.target)) {
+        if (onClose) {
+          onClose();
+          setIsDisplay(false);
+        } else {
+          setIsDisplay(false);
+        }
+      }
+    };
+
+    if (isOpen) {
+      onOpen?.();
+      document.addEventListener("click", handleDocumentClick);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, [isDisplay, isOpen, modalKey, onClose]);
 
   const validateAction = () => {
-    if (onValidate) onValidate();
-    else setIsDisplay(false);
+    if (onValidate) {
+      onValidate();
+    } else {
+      setIsDisplay(false);
+    }
   };
-
-  useCallback(() => {
-    document.addEventListener("click", (event) => {
-      const modal = document.getElementById(`ninja-modal-${modalKey}`);
-      if (isDisplay && !modal?.contains(event.target)) setIsDisplay(false);
-    });
-  }, [isDisplay]);
-
-  useCallback(() => {
-    document.addEventListener("click", (event) => {
-      const modal = document.getElementById(`ninja-modal-${modalKey}`);
-      if (isOpen && !modal?.contains(event.target)) onClose?.();
-    });
-  }, [isOpen]);
 
   return (isDisplay || isOpen) && modalKey ? (
     <div
@@ -64,7 +75,9 @@ export const Modal = ({
                   if (onClose) {
                     onClose();
                     setIsDisplay(false);
-                  } else setIsDisplay(false);
+                  } else {
+                    setIsDisplay(false);
+                  }
                 }}
               >
                 <X fontSize="1.5rem" />
@@ -88,7 +101,7 @@ export const Modal = ({
               <Button type="cancel" onClick={() => setIsDisplay(false)}>
                 {t(`ninja.modal-default.buttons.cancel`)}
               </Button>
-              <Button type="validate" onClick={() => validateAction()}>
+              <Button type="validate" onClick={validateAction}>
                 {t(`ninja.modal-default.buttons.validate`)}
               </Button>
             </div>
