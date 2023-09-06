@@ -40,6 +40,7 @@ export const Pagination = ({
                 const idPage = index + 1;
                 return (
                   <Button
+                    key={idPage}
                     name={`link ${idPage === currentPage ? "disabled" : ""}`}
                     id={id && `pagination-numerotation-${id}`}
                     onClick={() => {
