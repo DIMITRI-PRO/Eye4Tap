@@ -139,6 +139,8 @@ Lobby.propTypes = {
   setDisplayGame: PropTypes.func.isRequired,
   setDifficulty: PropTypes.func.isRequired,
   refresh: PropTypes.bool.isRequired,
-  difficulty: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string })
-    .isRequired,
+  difficulty: PropTypes.shape({ id: PropTypes.number, name: PropTypes.string }),
+};
+Lobby.defaultProps = {
+  difficulty: null,
 };
