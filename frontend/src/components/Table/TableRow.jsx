@@ -25,17 +25,21 @@ export const TableRow = ({ id, isLoading, headers, datas, defaultLimit }) => {
           !isLoading ? "once" : "infinite"
         }`}
       >
-        {headers.map(({ render, align, width }) => (
-          <td
-            className="ninja table-body td-row"
-            style={{
-              width,
-              textAlign: align || "left",
-            }}
-          >
-            {data.defaultValue || render?.(data)}
-          </td>
-        ))}
+        {headers.map(({ render, align, width }, j) => {
+          const idTd = `${data.id}-${j}`;
+          return (
+            <td
+              key={idTd}
+              className="ninja table-body td-row"
+              style={{
+                width,
+                textAlign: align || "left",
+              }}
+            >
+              {data.defaultValue || render?.(data)}
+            </td>
+          );
+        })}
       </tr>
     ));
 
@@ -61,7 +65,7 @@ TableRow.propTypes = {
       width: PropTypes.string,
     })
   ),
-  datas: PropTypes.arrayOf({}),
+  datas: PropTypes.arrayOf(PropTypes.shape({})),
   isLoading: PropTypes.bool,
 };
 TableRow.defaultProps = {
