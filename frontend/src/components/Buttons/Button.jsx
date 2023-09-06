@@ -19,6 +19,7 @@ export const Button = ({
       className={`ninja btn-${name || type || "basic"}`}
       type={type || "button"}
       onClick={onClick || null}
+      data-testid={id || null}
     >
       {isLoading ? <Loader className="ninja btn-loader-spin" /> : icon && icon}
       {children}
