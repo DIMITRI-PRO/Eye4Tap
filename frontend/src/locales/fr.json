@@ -29,13 +29,17 @@
     }
   },
   "profile": {
-    "title": "Votre profile"
+    "title": "Votre profile",
+    "modal": {
+      "message": "Attention! Vous allez supprimer votre compte, êtes vous sûr de votre choix?"
+    }
   },
   "buttons": {
     "login-submit": "Se connecter",
     "register-submit": "S'inscrire",
     "create-account": "Créer un compte",
     "already-account": "Vous avez déjà un compte",
+    "delete-account": "Supprimer mon compte",
     "deconnexion": "Se déconnecter",
     "save": "Sauvegarder"
   },
@@ -111,6 +115,7 @@
         }
       },
       "ranking": {
+        "title": "CLASSEMENT GLOBAL",
         "table": {
           "pseudo": "Nom d'utilisateur",
           "value_score": "Score",
@@ -129,7 +134,8 @@
         "exit-game": "Quitter le jeu",
         "start-game": "Commencer",
         "start": "Commencer",
-        "back": "Retour"
+        "back": "Retour",
+        "back-menu": "Retour au menu"
       }
     },
     "not-found": {
@@ -160,6 +166,14 @@
     "pagination": {
       "next": "Suivant",
       "previous": "Précédent"
+    }
+  },
+  "ninja": {
+    "modal-default": {
+      "buttons": {
+        "cancel": "Annuler",
+        "validate": "Confirmer"
+      }
     }
   }
 }

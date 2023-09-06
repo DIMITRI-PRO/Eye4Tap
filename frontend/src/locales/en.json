@@ -29,13 +29,17 @@
     }
   },
   "profile": {
-    "title": "Your profile"
+    "title": "Your profile",
+    "modal": {
+      "message": "Warning! Your account will be deleted, are you sure about that?"
+    }
   },
   "buttons": {
     "login-submit": "Log in",
     "register-submit": "Sign in",
     "create-account": "Create new account",
     "already-account": "You already have an account",
+    "delete-account": "Delete my account",
     "deconnexion": "Log out",
     "save": "Save"
   },
@@ -111,6 +115,7 @@
         }
     },
     "ranking": {
+      "title": "GLOBAL RANKING",
         "table": {
             "pseudo": "Username",
             "value_score": "Score",
@@ -129,7 +134,8 @@
         "exit-game": "Exit game",
         "start-game": "Start",
         "start": "Start",
-        "back": "Back"
+        "back": "Back",
+        "back-menu": "Back to menu"
       }
     },
     "not-found": {
@@ -160,6 +166,14 @@
     "pagination": {
       "next": "Next",
       "previous": "Previous"
+    }
+  },
+  "ninja": {
+    "modal-default": {
+      "buttons": {
+        "cancel": "Cancel",
+        "validate": "Confirm"
+      }
     }
   }
 }
