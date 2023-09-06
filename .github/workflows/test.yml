@@ -49,3 +49,45 @@ jobs:
           body="Coverage: $coverage%"
           echo "$body" > comment.md
           curl -s -H "Authorization: token $GITHUB_TOKEN" -X POST -d @comment.md "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
+
+  test_backend:
+    name: Run backend tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js for backend
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+
+      - name: Install Node.js dependencies for backend
+        run: |
+          cd backend
+          npm install
+          npm install --save-dev jest-coverage-badge
+
+      - name: Run backend tests and coverage
+        run: cd backend && npm run coverage
+
+      - name: Upload backend coverage reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: backend-coverage
+          path: ./backend/coverage
+
+      - name: Extract PR number
+        id: extract_pr_number
+        run: echo "::set-output name=pr_number::$(echo $GITHUB_REF | cut -d/ -f3)"
+
+      - name: Extract and comment coverage in PR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          coverage=$(cat backend/coverage/lcov-report/index.html | grep "Total.*<strong>" | sed -E 's/.*<strong>([0-9]+)%.*<\/strong>/\1/')
+          echo "Coverage: $coverage%"
+          body="Coverage: $coverage%"
+          echo "$body" > comment.md
+          curl -s -H "Authorization: token $GITHUB_TOKEN" -X POST -d @comment.md "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
