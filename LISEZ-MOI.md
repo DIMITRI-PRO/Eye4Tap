@@ -1,49 +1,40 @@
-## Concept
+## Figma
 
-Ce template est conçu pour servir de base à tous les projets (P2/P3) suivants la stack React-Node-MySQL telle qu'enseignée à la Wild Code School. Il est préconfiguré avec un ensemble d'outils qui aideront les élèves à produire un code correspondant mieux aux standards du monde du travail et plus facile à maintenir, tout en restant simple à utiliser.
+Design: [Lien vers le design](https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=design&node-id=0%3A1&mode=design&t=h9HLYsSAJAfk0RIv-1)
 
-## Installation & Utilisation
+## Configuration et Utilisation
 
-### Pour commencer un projet
+### Initialisation du Projet
 
-- Sur VSCode, installer les plugins **Prettier - Code formatter** et **ESLint** et les configurer
-- Cloner ce dépôt, se rendre à l'intérieur
-- Lancer la commande `npm run setup`
-- _NB: Pour exécuter le backend, un fichier d'environnement avec les données de connexion d'une BdD valide est nécesaire. Un modèle se trouve dans `backend/.env.sample`_
+- Dans VSCode, installez les plugins **Prettier - Code formatter** et **ESLint** et configurez-les.
+- Clonez ce référentiel, puis entrez dans le dossier.
+- Exécutez la commande `npm run setup`.
+- _NB : Pour lancer le serveur backend, vous aurez besoin d'un fichier d'environnement contenant les informations d'identification de la base de données. Vous trouverez un modèle dans `backend/.env.sample`._
 
-### Liste des commandes et signification
+### Commandes Disponibles
 
-- `setup` : Initialisation du frontend et du backend ainsi que des outils
-- `dev` : Démarrage des deux serveurs (frontend + backend) dans un même terminal
-- `dev-front` : Démarrage d'un serveur React pour le frontend
-- `dev-back` : Démarrage d'un serveur Express pour le backend
-- `lint` : Exécute des outils de validation de code (sera exécutée automatiquement à chaque _commit_)
-- `fix` : Fixe les erreurs de formatage (à lancer si `lint` ne passe pas)
+- `setup` : Initialisation du frontend et du backend, ainsi que de tous les outils.
+- `migrate` : Exécute le script de migration de la base de données.
+- `migrate:clear` : Efface la base de données (supprime définitivement !!!).
+- `dev` : Démarre les deux serveurs (frontend + backend) dans un seul terminal.
+- `dev:front` : Démarre le serveur frontend React.
+- `dev:back` : Démarre le serveur backend Express.
+- `test:unit` : Teste les deux serveurs avec Jest.
+- `test:front` : Teste l'application frontend.
+- `test:back` : Teste l'application backend.
+- `lint` : Exécute les outils de validation et refuse le code non propre (sera exécuté à chaque _commit_).
+- `fix` : Corrige les erreurs du linter (exécutez-le si `lint` signale des problèmes dans votre code !).
 
-## Pour plus d'informations
+### Outils
 
-### Listing des outils utilisés
+- _Concurrently_ : Permet d'exécuter plusieurs commandes simultanément dans la même interface en ligne de commande (CLI).
+- _Husky_ : Permet d'exécuter des commandes spécifiques déclenchées par des événements _git_.
+- _Vite_ : Alternative à _Create-React-App_, regroupe moins d'outils pour une expérience plus fluide.
+- _ESLint_ : Outil de "qualité du code" qui garantit que les règles choisies seront respectées.
+- _Prettier_ : Outil de "qualité du code" axé sur le guide de style.
+- _ Airbnb Standard_ : L'une des normes les plus connues, même si elle n'est pas officiellement liée à ES/JS.
+- _Nodemon_ : Permet de redémarrer le serveur à chaque mise à jour d'un fichier .js.
 
-- _Concurrently_ : Permet d'exécuter plusieurs commandes dans un même terminal
-- _Husky_ : Permet d'exécuter des actions en déclenchement de commandes _git_
-- _Vite_ : Alternative à _Create-React-App_, embarquant moins de packages pour une expérience plus fluide
-- _ESLint_ : Outil de "qualité de code", permet de s'assurer que des règles pré-configurées sont bien respectées
-- _Prettier_ : Outil de "qualité de code" également, se concentre plus particulièrement sur le style du code
-- _Standard Airbnb_ : L'un des "standards" les plus connus, même s'il n'est pas officiellement lié à ES/JS
-- _Nodemon_ : Outil permettant de relancer un serveur à chaque fois qu'un des fichiers est modifié
+### À FAIRE
 
-### Reste à faire
-
-Prettier:
-
-- corriger la config front/back pour qu'elle suive le même standard qu'ESLint
-
-Testing:
-
-- ajouter des tests unitaires sur le front et le back, avec les commandes associées
-
-Vérifications:
-
-- s'assurer que les principaux outils utilisés lors de la formation sont compatibles avec ce template
-- deploiements ? Compatible avec Netlify/Vercel/Heroku ?
-- fonctionnement avec yarn/pnpm
+- Implémenter l'extension Jest dans VS pour le monorepo.

@@ -1,6 +1,6 @@
 ## Figma
 
-design : https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=design&node-id=0%3A1&mode=design&t=h9HLYsSAJAfk0RIv-1
+Design: [link to the design](https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=design&node-id=0%3A1&mode=design&t=h9HLYsSAJAfk0RIv-1)
 
 ## Setup & Use
 
@@ -15,9 +15,13 @@ design : https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=des
 
 - `setup` : Initialization of frontend and backend, as well as all toolings
 - `migrate` : Run the database migration script
+- `migrate:clear` : Clear database (delete definitively!!!)
 - `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
+- `dev:front` : Starts the React frontend server
+- `dev:back` : Starts the Express backend server
+- `test:unit` : Test both servers with Jest
+- `test:front` : Test frontend app
+- `test:back` : Test backend app
 - `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
 - `fix` : Fixes linter errors (run it if `lint` growls on your code !)
 
@@ -30,3 +34,7 @@ design : https://www.figma.com/file/jYmmSaHYxEUlsaakXWcTYJ/Eye-TAP-Game?type=des
 - _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
 - _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
 - _Nodemon_ : Allows to restart the server everytime a .js file is udated
+
+### TO DO
+
+- implement Jest extension on VS for monorepo
