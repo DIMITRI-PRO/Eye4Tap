@@ -8,7 +8,7 @@ import {
   Select,
 } from "../../../../components/NinjaComp";
 import { ArrowLeftCircle } from "../../../../assets/FeatherIcons";
-import { DataTable } from "./DataTable/DataTable";
+import DataTable from "./DataTable/DataTable";
 
 import { useMessageContext } from "../../../../context/MessageNotifContext";
 import { useAuthContext } from "../../../../context/AuthContext";
