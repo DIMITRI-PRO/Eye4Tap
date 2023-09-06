@@ -98,7 +98,13 @@ export const Modal = ({
           {footer}
           {withActionButtons && (
             <div className={`ninja modal-${customName || "default"} buttons`}>
-              <Button type="cancel" onClick={() => setIsDisplay(false)}>
+              <Button
+                type="cancel"
+                onClick={() => {
+                  if (onClose) onClose();
+                  setIsDisplay(false);
+                }}
+              >
                 {t(`ninja.modal-default.buttons.cancel`)}
               </Button>
               <Button type="validate" onClick={validateAction}>
@@ -137,7 +143,7 @@ Modal.defaultProps = {
   withActionButtons: true,
   withCloseButton: true,
   borderless: true,
-  onValidate: null,
+  onValidate: () => {},
   onOpen: null,
   onClose: null,
   isOpen: null,
