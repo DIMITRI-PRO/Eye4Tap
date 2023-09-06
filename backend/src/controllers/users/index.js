@@ -2,8 +2,9 @@ import models from "../../models/index.js";
 
 const { Users } = models;
 
-const getUsers = async (req, res) => {
+const getUsers = async ({ payload }, res) => {
   try {
+    if (payload.role === 0) res.sendStatus(401);
     const { datas } = await Users.find({
       selector: "id,lastname,firstname,email,pseudo,picture,id_role",
     });
@@ -13,9 +14,10 @@ const getUsers = async (req, res) => {
   }
 };
 
-const getUser = async ({ payload }, res) => {
+const getUser = async ({ payload, params }, res) => {
   try {
     const { sub } = payload;
+    if (params.id !== sub.toString()) res.sendStatus(401);
     const { datas } = await Users.find({
       selector:
         "users.id,users.lastname,users.firstname,users.email,users.pseudo,users.picture,users.id_role,roles.*",
@@ -84,10 +86,11 @@ const postUser = async ({ body }, res) => {
   }
 };
 
-const deleteUser = async ({ payload }, res) => {
+const deleteUser = async ({ payload, params }, res) => {
   try {
-    const { id } = payload;
-    const [result] = await Users.delete(id);
+    const { sub, role } = payload;
+    if (params.id !== sub.toString() || role > 0) res.sendStatus(401);
+    const [result] = await Users.delete(sub);
 
     if (result.affectedRows === 0) res.sendStatus(404);
     else res.send("Item successfully deleted from your database").status(204);
