@@ -54,6 +54,23 @@
       display: flex;
       justify-content: flex-end;
       gap: 1rem;
+
+      & > button {
+        cursor: pointer;
+        background: $secondary;
+        padding: 0.5em 1em;
+        color: $text-btn-basic;
+        height: auto;
+        border: solid $text-btn-basic 0.15rem;
+        border-radius: 0.5rem;
+
+        &:hover {
+          transition: ease-in-out 0.2s;
+          background: $primary;
+          color: $text-btn-basic-hover;
+          border-color: lightblue;
+        }
+      }
     }
   }
 }
