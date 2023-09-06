@@ -33,27 +33,44 @@ jobs:
   #         name: backend-coverage
   #         path: ./coverage
 
-  test_frontend:
-    name: Run frontend tests
-    runs-on: ubuntu-latest
+test_frontend:
+  name: Run frontend tests
+  runs-on: ubuntu-latest
 
-    steps:
-      - name: Check out Git repository
-        uses: actions/checkout@v2
+  steps:
+    - name: Check out Git repository
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js for frontend
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
+    - name: Set up Node.js for frontend
+      uses: actions/setup-node@v1
+      with:
+        node-version: 16
 
-      - name: Install Node.js dependencies for frontend
-        run: cd frontend && npm install
+    - name: Install Node.js dependencies for frontend
+        run: |
+    cd frontend
+    npm install
+    npm install --save-dev jest-coverage-badge
 
-      - name: Run frontend tests
-        run: cd frontend && npm run coverage
+    - name: Run frontend tests and coverage
+      run: cd frontend && npm run coverage
 
-      - name: Upload frontend coverage reports
-        uses: actions/upload-artifact@v2
-        with:
-          name: frontend-coverage
-          path: ./frontend/coverage
+    - name: Upload frontend coverage reports
+      uses: actions/upload-artifact@v2
+      with:
+        name: frontend-coverage
+        path: ./frontend/coverage
+
+    - name: Extract PR number
+      id: extract_pr_number
+      run: echo "::set-output name=pr_number::$(echo $GITHUB_REF | cut -d/ -f3)"
+
+    - name: Extract and comment coverage in PR
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        coverage=$(cat frontend/coverage/lcov-report/index.html | grep "Total.*<strong>" | sed -E 's/.*<strong>([0-9]+)%.*<\/strong>/\1/')
+        echo "Coverage: $coverage%"
+        body="Coverage: $coverage%"
+        echo "$body" > comment.md
+        curl -s -H "Authorization: token $GITHUB_TOKEN" -X POST -d @comment.md "https://api.github.com/repos/$GITHUB_REPOSITORY/issues/$PR_NUMBER/comments"
