@@ -9,6 +9,6 @@ export default {
     NODE_ENV: "test",
   },
   setupFiles: ["dotenv/config"],
-  coverageDirectory: "coverage/backend",
+  coverageDirectory: "coverage",
   verbose: true,
 };
