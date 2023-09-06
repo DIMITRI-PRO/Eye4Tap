@@ -6,7 +6,7 @@ import { Pagination } from "./Pagination";
 
 const Table = ({
   id,
-  ref,
+  tableRef,
   isLoading,
   datas,
   headers,
@@ -21,7 +21,7 @@ const Table = ({
 }) => {
   return (
     <>
-      <table ref={ref} className="ninja table-container">
+      <table ref={tableRef} className="ninja table-container">
         {/* TO DO : pass all props for each element inside children props */}
         {children || (
           <>
@@ -53,11 +53,11 @@ const Table = ({
 
 Table.propTypes = {
   id: PropTypes.string,
-  ref: PropTypes.oneOfType([
+  tableRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   ]),
-  datas: PropTypes.arrayOf({}),
+  datas: PropTypes.arrayOf(PropTypes.shape({})),
   isLoading: PropTypes.bool,
   headers: PropTypes.arrayOf(
     PropTypes.shape({
@@ -69,9 +69,6 @@ Table.propTypes = {
   ),
   children: PropTypes.node,
   pagination: PropTypes.element,
-  paginationOption: PropTypes.shape({
-    limit: PropTypes.number,
-  }).isRequired,
   dataLength: PropTypes.number,
   totalCount: PropTypes.number,
   limit: PropTypes.number,
@@ -81,7 +78,7 @@ Table.propTypes = {
 };
 Table.defaultProps = {
   id: null,
-  ref: null,
+  tableRef: null,
   isLoading: false,
   datas: null,
   children: null,

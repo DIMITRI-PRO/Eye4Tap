@@ -1,6 +1,7 @@
+import React from "react";
 import { PropTypes } from "prop-types";
 
-const GridZone = ({
+export const GridZone = ({
   id,
   rows,
   columns,
@@ -35,10 +36,7 @@ const GridZone = ({
 
 GridZone.propTypes = {
   id: PropTypes.string,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.element),
-    PropTypes.element,
-  ]),
+  children: PropTypes.arrayOf(PropTypes.node),
   rows: PropTypes.number,
   columns: PropTypes.number,
   gap: PropTypes.number,
@@ -57,42 +55,4 @@ GridZone.defaultProps = {
   gapCol: null,
   unit: "rem",
   customClass: null,
-};
-
-const GridCard = ({ gridArea, children, customClass, id }) => {
-  let zone = "";
-
-  if (gridArea) zone = gridArea.join("/");
-
-  const divStyle = {
-    gridArea: zone,
-  };
-
-  return (
-    <div
-      id={id}
-      className={`ninja grid-${customClass || "basic"} child`}
-      style={gridArea ? divStyle : null}
-    >
-      {children}
-    </div>
-  );
-};
-
-GridCard.propTypes = {
-  id: PropTypes.string,
-  children: PropTypes.node,
-  gridArea: PropTypes.arrayOf(PropTypes.number),
-  customClass: PropTypes.string,
-};
-GridCard.defaultProps = {
-  id: null,
-  children: null,
-  gridArea: [],
-  customClass: null,
-};
-
-export const Grids = {
-  GridZone,
-  GridCard,
 };

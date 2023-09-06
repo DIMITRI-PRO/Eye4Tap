@@ -41,6 +41,7 @@ export const Select = ({
             (selectedOption === "" || selectedOption === initialLabel) &&
             "default"
           }`}
+          data-testid={id && `${id}-label`}
         >
           {label}
         </label>
@@ -54,6 +55,7 @@ export const Select = ({
         }`}
         value={selectedOption}
         onChange={handleSelectChange}
+        data-testid={id && `${id}-select`}
       >
         <option className="ninja select-option-empty" hidden value="">
           {initialLabel || "Sélectionnez une option..."}
@@ -70,7 +72,12 @@ export const Select = ({
         ))}
       </select>
       {!noClear && selectedOption !== "" && selectedOption !== initialLabel && (
-        <Button name="select-reset" onClick={handleResetClick} icon={<X />} />
+        <Button
+          id={id && `${id}-button`}
+          name="select-reset"
+          onClick={handleResetClick}
+          icon={<X />}
+        />
       )}
     </div>
   );
@@ -79,7 +86,7 @@ export const Select = ({
 Select.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
-  options: PropTypes.arrayOf({}),
+  options: PropTypes.arrayOf(PropTypes.shape({})),
   onChange: PropTypes.func,
   initialLabel: PropTypes.string,
   label: PropTypes.string,

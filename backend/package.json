@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "test:unit": "echo '----- Checking Backend...' && jest",
+    "coverage": "jest --verbose --coverage",
+    "test:unit": "echo '----- Checking Backend...' && jest --verbose",
     "migrate": "node migrate.js",
     "migrate:clear": "node migrate.js --clear",
     "start": "node index.js",

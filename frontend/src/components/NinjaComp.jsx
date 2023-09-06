@@ -8,7 +8,7 @@ import { LoaderSpin } from "./Progress/LoaderSpin";
 import { Modal } from "./Modals/Modal";
 import { FooterBar } from "./Footer/Footer";
 import { SectionContent } from "./Layers/SectionContent";
-import { Grids } from "./Grids/Grid";
+import { Grids } from "./Grids/index";
 import { Input } from "./Form/Input/Input";
 import { Select } from "./Form/Select/Select";
 import { Form } from "./Form/Form/Form";

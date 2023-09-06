@@ -66,20 +66,34 @@ export const Calibrate = () => {
       <GridZone customClass="game-calibrate" columns={7} rows={5} gap={1}>
         {step === 1 && (
           <>
-            {cardCoordStep1.map((coords) => (
-              <GridCard gridArea={coords} customClass="card-calibrate">
-                <CalibrateButton onClick={handleClick} />
-              </GridCard>
-            ))}
+            {cardCoordStep1.map((coords, index) => {
+              const idGridCard = `${index + 1}`;
+              return (
+                <GridCard
+                  key={idGridCard}
+                  gridArea={coords}
+                  customClass="card-calibrate"
+                >
+                  <CalibrateButton onClick={handleClick} />
+                </GridCard>
+              );
+            })}
           </>
         )}
         {step === 2 && (
           <>
-            {cardCoordStep2.map((coords) => (
-              <GridCard gridArea={coords} customClass="card-calibrate">
-                <CalibrateButton onClick={handleClick} />
-              </GridCard>
-            ))}
+            {cardCoordStep2.map((coords, index) => {
+              const idGridCard = `${index + 1}`;
+              return (
+                <GridCard
+                  key={idGridCard}
+                  gridArea={coords}
+                  customClass="card-calibrate"
+                >
+                  <CalibrateButton onClick={handleClick} />
+                </GridCard>
+              );
+            })}
           </>
         )}
       </GridZone>
