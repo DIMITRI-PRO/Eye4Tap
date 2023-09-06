@@ -48,9 +48,9 @@ test_frontend:
 
     - name: Install Node.js dependencies for frontend
         run: |
-    cd frontend
-    npm install
-    npm install --save-dev jest-coverage-badge
+          cd frontend
+          npm install
+          npm install --save-dev jest-coverage-badge
 
     - name: Run frontend tests and coverage
       run: cd frontend && npm run coverage
