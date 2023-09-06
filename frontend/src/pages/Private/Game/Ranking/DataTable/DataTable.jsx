@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
@@ -8,85 +8,88 @@ import { useAuthContext } from "../../../../../context/AuthContext";
 import { Button, Table } from "../../../../../components/NinjaComp";
 import { RefreshCw } from "../../../../../assets/FeatherIcons";
 
-export const DataTable = ({
-  id,
-  resource,
-  header,
-  columns,
-  extraQuery,
-  pagination,
-  paginationOption,
-  refresh,
-  setRefresh,
-  withRefreshButton,
-}) => {
-  const { t } = useTranslation();
-  const { responseMessage } = useMessageContext();
-  const { requestAPI } = useAuthContext();
+const DataTable = forwardRef(
+  (
+    {
+      id,
+      resource,
+      header,
+      columns,
+      extraQuery,
+      pagination,
+      paginationOption,
+      refresh,
+      setRefresh,
+      withRefreshButton,
+    },
+    ref
+  ) => {
+    const { t } = useTranslation();
+    const { responseMessage } = useMessageContext();
+    const { requestAPI } = useAuthContext();
 
-  const { limit } = paginationOption;
+    const { limit } = paginationOption;
 
-  const tableContainerRef = useRef(null);
+    const [datas, setDatas] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
-  const [datas, setDatas] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
+    const getRessources = async () => {
+      setIsLoading(true);
+      try {
+        const { data } = await requestAPI(
+          `${resource}?${limit ? `limit=${limit}&` : ""}page=${currentPage}${
+            extraQuery ? `&${extraQuery}` : ""
+          }`
+        );
+        if (data?.datas?.length === 0) setCurrentPage(1);
+        setDatas(data);
+        setIsLoading(false);
+      } catch (error) {
+        responseMessage(error);
+        setIsLoading(false);
+      }
+    };
 
-  const getRessources = async () => {
-    setIsLoading(true);
-    try {
-      const { data } = await requestAPI(
-        `${resource}?${limit ? `limit=${limit}&` : ""}page=${currentPage}${
-          extraQuery ? `&${extraQuery}` : ""
-        }`
-      );
-      if (data?.datas?.length === 0) setCurrentPage(1);
-      setDatas(data);
-      setIsLoading(false);
-    } catch (error) {
-      responseMessage(error);
-      setIsLoading(false);
-    }
-  };
+    useEffect(() => {
+      getRessources();
+    }, [refresh, currentPage]);
 
-  useEffect(() => {
-    getRessources();
-  }, [refresh, currentPage]);
-
-  return (
-    <div className="ninja datatable">
-      <div className="ninja datatable-header">
-        {header && (
-          <>
-            {header && header}
-            {withRefreshButton && (
-              <Button
-                isLoading={isLoading}
-                onClick={() => setRefresh?.(!refresh)}
-                icon={<RefreshCw />}
-              >
-                {t("settings.datatable.reload")}
-              </Button>
-            )}
-          </>
-        )}
+    return (
+      <div className="ninja datatable">
+        <div className="ninja datatable-header">
+          {header && (
+            <>
+              {header && header}
+              {withRefreshButton && (
+                <Button
+                  isLoading={isLoading}
+                  onClick={() => setRefresh?.(!refresh)}
+                  icon={<RefreshCw />}
+                >
+                  {t("settings.datatable.reload")}
+                </Button>
+              )}
+            </>
+          )}
+        </div>
+        <Table
+          id={id}
+          ref={ref} // Utilisez la référence passée par le parent
+          isLoading={isLoading}
+          datas={datas?.datas}
+          headers={columns}
+          limit={limit}
+          totalCount={datas?.infos?.total_count}
+          dataLength={datas?.datas?.length}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          hiddenPagination={!pagination}
+        />
       </div>
-      <Table
-        id={id}
-        ref={tableContainerRef}
-        isLoading={isLoading}
-        datas={datas?.datas}
-        headers={columns}
-        limit={limit}
-        totalCount={datas?.infos?.total_count}
-        dataLength={datas?.datas?.length}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        hiddenPagination={!pagination}
-      />
-    </div>
-  );
-};
+    );
+  }
+);
 
 DataTable.propTypes = {
   id: PropTypes.string,
@@ -119,3 +122,5 @@ DataTable.defaultProps = {
   extraQuery: null,
   header: null,
 };
+
+export default DataTable;
