@@ -34,6 +34,8 @@
   "buttons": {
     "login-submit": "Log in",
     "register-submit": "Sign in",
+    "create-account": "Create new account",
+    "already-account": "You already have an account",
     "deconnexion": "Log out",
     "save": "Save"
   },
@@ -66,15 +68,98 @@
       }
     },
     "game": {
-      "buttons": {
+      "calibrate": {
+        "modal": {
+            "title": "Instructions:",
+            "list": {
+                "text-1": "Wait for the red pointer to appear.",
+                "text-2": "Calibrate your points by clicking several times on the hexagons and focusing on the mouse cursor. It will turn blue when the point is calibrated.",
+                "text-3": "Once your calibration suits you, press Done or restart the configuration."
+            },
+            "message": "Attention! Keep your face in the same configuration when you start the game."
+        },
+        "finish-modal": {
+            "title": "Calibration completed",
+            "buttons": {
+                "restart": "Restart",
+                "done": "Done"
+            }
+        },
+        "buttons": {
+            "exit": "Exit",
+            "ok": "Got it",
+            "start": "Start"
+        },
+        "loaders": {
+            "camera": "Loading camera..."
+        }
+    },
+    "start": {
+        "game-zone": {
+            "score": "Score: {{score}}",
+            "pause-d": "Pause: Click/Esc",
+            "pause-m": "Pause: Touch",
+            "press": "PRESS"
+        },
+        "lobby": {
+            "title": "Get ready",
+            "user-card": {
+                "title": "Top score:",
+                "score": "My top score",
+                "points": "{{score}} points - {{difficulty}} - {{date}}"
+            }
+        }
+    },
+    "ranking": {
+        "table": {
+            "pseudo": "Username",
+            "value_score": "Score",
+            "difficulty": "Difficulty",
+            "created_at": "Date"
+        }
+    },
+    "messages": {
+        "save-score": "You scored {{score}} points. Saving in progress..."
+    },
+    "buttons": {
+        "resume-game": "Resume",
+        "lobby": "Back to lobby",
         "calibrate": "Calibrate eye tracking",
+        "ranking": "Ranking",
         "exit-game": "Exit game",
-        "start-eye": "Start calibrate",
-        "start-game": "Start"
+        "start-game": "Start",
+        "start": "Start",
+        "back": "Back"
+      }
+    },
+    "not-found": {
+      "title": "error 404",
+      "sub-title": "The requested page could not be found.",
+      "buttons": {
+        "home": "Back to homepage."
       }
     }
   },
   "footer": {
     "text-rights": "{{app}}™ version {{version}} {{name}}, {{corp}} © . All Rights Reserved."
+  },
+  "message": {
+    "status": {
+      "204": "Succes !"
+    }
+  },
+  "settings": {
+    "difficulty": {
+      "title": "Difficulty : ",
+      "HARD": "HARD",
+      "NORMAL": "NORMAL",
+      "EASY": "EASY",
+      "DEVELOPPER": "DEVELOPER",
+      "undefined": "Select difficulty..."
+    },
+    "pagination": {
+      "next": "Next",
+      "previous": "Previous"
+    }
   }
 }

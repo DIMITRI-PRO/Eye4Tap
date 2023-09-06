@@ -105,7 +105,7 @@
           "title": "Prépare toi",
           "user-card": {
             "title": "Top score :",
-            "score": "Mon top 3",
+            "score": "Mes scores",
             "points": "{{score}} points - {{difficulty}} - {{date}}"
           }
         }

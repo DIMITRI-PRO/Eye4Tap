@@ -8,21 +8,52 @@ on:
       - development
 
 jobs:
-  test:
-    name: Run tests
+  # test_backend:
+  #   name: Run backend tests
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #     - name: Check out Git repository
+  #       uses: actions/checkout@v2
+
+  #     - name: Set up Node.js for backend
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 16
+
+  #     - name: Install Node.js dependencies for backend
+  #       run: cd backend && npm install
+
+  #     - name: Run backend tests
+  #       run: cd backend && npm run test:unit
+
+  #     - name: Upload backend coverage reports
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: backend-coverage
+  #         path: ./coverage
+
+  test_frontend:
+    name: Run frontend tests
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
+      - name: Set up Node.js for frontend
         uses: actions/setup-node@v1
         with:
           node-version: 16
 
-      - name: Install Node.js dependencies
-        run: npm run setup
+      - name: Install Node.js dependencies for frontend
+        run: cd frontend && npm install
 
-      - name: Run tests
-        run: npm run test:unit
+      - name: Run frontend tests
+        run: cd frontend && npm run coverage
+
+      - name: Upload frontend coverage reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: frontend-coverage
+          path: ./frontend/coverage

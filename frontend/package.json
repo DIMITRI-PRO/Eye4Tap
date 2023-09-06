@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "test:unit": "echo '----- Checking Frontend...' && jest && echo '----- Done!' --DEBUG_PRINT_LIMIT=10000",
+    "coverage": "jest --verbose --coverage",
+    "test:unit": "echo '----- Checking Frontend...' && jest --verbose && echo '----- Done!' --DEBUG_PRINT_LIMIT=10000",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
