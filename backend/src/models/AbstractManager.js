@@ -36,13 +36,6 @@ export default class AbstractManager {
       [...values]
     );
 
-    // console.log(
-    //   `select ${finalSelector} from ${this.table} ${joinner} ${
-    //     query.length ? "where " : ""
-    //   } ${query?.join(" and ")} ${sorter}`,
-    //   [...values]
-    // );
-
     const [datas] = await this.connection.query(
       `select ${finalSelector} from ${this.table} ${joinner} ${
         query.length ? "where " : ""
