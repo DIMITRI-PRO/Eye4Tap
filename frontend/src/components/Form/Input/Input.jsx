@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Eye, EyeOff } from "../../../assets/FeatherIcons";
 
@@ -17,6 +17,7 @@ export const Input = ({ ...props }) => {
         className={`ninja form-item child-${props?.name || ""}`}
         {...props}
         type={displayText || props?.type}
+        data-testid={props.id}
       />
       {props?.type === "password" && (
         <div
@@ -26,7 +27,11 @@ export const Input = ({ ...props }) => {
             setShow(!show);
           }}
         >
-          {show ? <EyeOff /> : <Eye />}
+          {show ? (
+            <EyeOff data-testid="eye-icon" />
+          ) : (
+            <Eye data-testid="eye-icon" />
+          )}
         </div>
       )}
     </div>
@@ -35,8 +40,10 @@ export const Input = ({ ...props }) => {
 
 Input.propTypes = {
   name: PropTypes.string,
+  id: PropTypes.string,
   type: PropTypes.string.isRequired,
 };
 Input.defaultProps = {
+  id: null,
   name: "",
 };
