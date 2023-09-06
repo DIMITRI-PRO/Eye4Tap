@@ -46,7 +46,10 @@ export const GameContextProvider = ({ children }) => {
       .showVideoPreview(true)
       .begin();
 
-    setIsLoading(false);
+    const isCameraReady = webgazer.isReady();
+
+    if (isCameraReady) setIsLoading(false);
+    else console.error("camera not ready");
   };
 
   const startEye = () => {
