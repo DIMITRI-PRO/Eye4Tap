@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useMessageContext } from "../../../context/MessageNotifContext";
 import { useAuthContext } from "../../../context/AuthContext";
@@ -7,31 +8,23 @@ import {
   FormItem,
   Button,
   SectionContent,
+  Modal,
 } from "../../../components/NinjaComp";
-import { User, RefreshCw, X } from "../../../assets/FeatherIcons";
+import { AlertTriangle } from "../../../assets/FeatherIcons";
+
+import { ProfilePicture } from "./ProfilePicture/ProfilePicture";
 
 export const Profile = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const { responseMessage, messageStatus } = useMessageContext();
-  const { requestAPI, authMemo, setUser } = useAuthContext();
+  const { requestAPI, authMemo, setUser, deleteCookie } = useAuthContext();
   const { id, user } = authMemo;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isPictureLoading, setIsPictureLoading] = useState(false);
-  const [displayDefault, setDisplayDefault] = useState(false);
   const [profilePicture, setProfilePicture] = useState("");
 
-  const getAnimeApi = async () => {
-    setIsPictureLoading(true);
-    try {
-      const { data } = await requestAPI(`anime-api/`);
-      setProfilePicture(data[0]?.image);
-      setDisplayDefault(false);
-    } catch (e) {
-      responseMessage(e);
-    }
-    setIsPictureLoading(false);
-  };
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const updateUser = async (body) => {
     setIsLoading(true);
@@ -51,40 +44,38 @@ export const Profile = () => {
     setIsLoading(false);
   };
 
+  const deleteUser = async () => {
+    setIsLoading(true);
+    try {
+      await requestAPI("delete", `users/${id}`, {});
+      navigate("/");
+      deleteCookie();
+    } catch (e) {
+      responseMessage(e);
+    }
+    setIsLoading(false);
+  };
+
   return (
     id && (
       <SectionContent pageName="profile">
+        <Modal
+          modalKey="profile"
+          initialDisplay={false}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          onValidate={() => deleteUser()}
+        >
+          <p>
+            <AlertTriangle /> {t("profile.modal.message")}
+          </p>
+        </Modal>
         <h1>{t("profile.title")}</h1>
         <Form onSubmit={updateUser} initialValues={user}>
-          <div className="formitem-profile-picture">
-            <div className="profile-picture-container">
-              {(profilePicture || user?.picture) && !displayDefault ? (
-                <img
-                  className="ninja profile-picture"
-                  src={profilePicture || user.picture}
-                  alt="profile"
-                />
-              ) : (
-                <User />
-              )}
-            </div>
-            <div className="profile-picture-actions">
-              <Button
-                name="circle remove"
-                icon={<X />}
-                onClick={() => {
-                  setProfilePicture(null);
-                  setDisplayDefault(true);
-                }}
-              />
-              <Button
-                name="circle reload"
-                icon={<RefreshCw />}
-                isLoading={isPictureLoading}
-                onClick={() => getAnimeApi()}
-              />
-            </div>
-          </div>
+          <ProfilePicture
+            profilePicture={profilePicture}
+            setProfilePicture={setProfilePicture}
+          />
           <FormItem
             label={t("register.label.lastname")}
             type="text"
@@ -105,6 +96,15 @@ export const Profile = () => {
           />
           <Button type="submit" name="link-game" isLoading={isLoading}>
             {t("buttons.save")}
+          </Button>
+          <hr />
+          <Button
+            type="button"
+            name="link-game"
+            onClick={() => setIsModalOpen(true)}
+            isLoading={isLoading}
+          >
+            {t("buttons.delete-account")}
           </Button>
         </Form>
       </SectionContent>
